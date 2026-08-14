@@ -218,7 +218,7 @@ export default function ReservationModal({
                     className="w-full py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white font-heading font-medium text-xs tracking-tight shadow-md transition-all flex items-center justify-center gap-2"
                   >
                     <MessageSquare className="w-4 h-4 fill-white text-emerald-600" />
-                    <span>WhatsApp ile Gönder (0541 828 43 42)</span>
+                    <span>WhatsApp ile Masanızı Ayırtın</span>
                   </button>
                 </div>
               </form>

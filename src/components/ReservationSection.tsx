@@ -80,12 +80,6 @@ export default function ReservationSection() {
                 </span>
               </div>
               <p className="font-light">Masanız rezervasyon saatinden itibaren 20 dakika adınıza opsiyonlanır.</p>
-              <p className="pt-1 border-t border-zinc-100 dark:border-zinc-800">
-                Doğrudan WhatsApp İletişim Hattı:{' '}
-                <a href="https://wa.me/905418284342" target="_blank" rel="noopener noreferrer" className="font-sans text-emerald-600 dark:text-emerald-400 font-medium hover:underline">
-                  0541 828 43 42
-                </a>
-              </p>
             </div>
           </div>
 
