@@ -46,7 +46,7 @@ export default function Hero({ onOpenReservation }: HeroProps) {
   };
 
   return (
-    <section className="snap-section relative h-[100dvh] min-h-[100dvh] w-full flex flex-col justify-between pt-24 sm:pt-32 lg:pt-36 pb-4 sm:pb-6 overflow-hidden bg-[#0A0A0C]">
+    <section className="snap-section relative h-[100dvh] min-h-[100dvh] w-full flex flex-col justify-between pt-32 sm:pt-44 lg:pt-48 pb-6 sm:pb-10 overflow-hidden bg-[#0A0A0C]">
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0 bg-[#0A0A0C] overflow-hidden">
         <video
@@ -65,8 +65,8 @@ export default function Hero({ onOpenReservation }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/50 pointer-events-none" />
       </div>
 
-      {/* Main Content Container (Positioned High Up Right Under Navbar) */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 text-left flex flex-col items-start justify-start mt-2 sm:mt-4">
+      {/* Main Content Container (Shifted Lower Down with All Elements Together) */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 text-left flex flex-col items-start justify-start mt-6 sm:mt-12 lg:mt-16">
         <div className="w-full max-w-2xl">
           {/* Left-Aligned Headline with Keyboard Typing Animation */}
           <motion.div
