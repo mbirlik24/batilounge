@@ -88,16 +88,16 @@ export default function Navbar({ onOpenReservation }: NavbarProps) {
             </button>
           )}
 
-          <Link
-            href="/menu"
-            className={`apple-btn px-5 py-2 rounded-full font-heading font-medium text-xs tracking-tight transition-all flex items-center justify-center ${
+          <button
+            onClick={onOpenReservation}
+            className={`apple-btn px-5 py-2 rounded-full font-heading font-medium text-xs tracking-tight transition-all ${
               scrolled
                 ? 'bg-[#1D1D1F] hover:bg-black dark:bg-white dark:hover:bg-zinc-100 text-white dark:text-[#1D1D1F] shadow-sm'
                 : 'bg-white hover:bg-zinc-100 text-[#1D1D1F] shadow-md'
             }`}
           >
-            Menüyü Gör
-          </Link>
+            Masa Ayırt
+          </button>
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -167,17 +167,19 @@ export default function Navbar({ onOpenReservation }: NavbarProps) {
                   !scrolled ? 'border-zinc-800' : 'border-black/[0.06] dark:border-white/[0.08]'
                 }`}
               >
-                <Link
-                  href="/menu"
-                  onClick={() => setMobileOpen(false)}
-                  className={`w-full py-3 rounded-full font-heading font-medium text-xs tracking-tight shadow-apple-md transition-all active:scale-[0.98] text-center block ${
+                <button
+                  onClick={() => {
+                    setMobileOpen(false);
+                    onOpenReservation();
+                  }}
+                  className={`w-full py-3 rounded-full font-heading font-medium text-xs tracking-tight shadow-apple-md transition-all active:scale-[0.98] ${
                     !scrolled
                       ? 'bg-white text-zinc-950 hover:bg-zinc-100'
                       : 'bg-[#1D1D1F] dark:bg-white text-white dark:text-[#1D1D1F]'
                   }`}
                 >
-                  Menüyü Gör
-                </Link>
+                  Masa Ayırt
+                </button>
               </motion.div>
             </div>
           </motion.div>
