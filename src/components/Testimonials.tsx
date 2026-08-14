@@ -201,39 +201,37 @@ export default function Testimonials() {
               </motion.div>
 
               <div>
-                <h3 className="text-xl sm:text-3xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight">
+                <h3 className="text-xl sm:text-3xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight mb-0.5">
                   {placeName}
                 </h3>
+                <p className="text-xs font-sans text-zinc-500 dark:text-zinc-400 font-light flex items-center gap-1">
+                  <MapPin className="w-3 h-3 text-amber-500 shrink-0" />
+                  <span>Zekeriyaköy, Sarıyer / İstanbul</span>
+                </p>
               </div>
             </div>
 
-            {/* Right: 5-Star Rating Box & Blue Link */}
-            <div className="flex flex-col items-start sm:items-end gap-2 shrink-0 w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-zinc-200/60 dark:border-zinc-800/60">
+            {/* Right: Minimal 5-Star Rating Badge & Blue Link */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 shrink-0 pt-2 sm:pt-0">
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-3 px-3.5 sm:px-4 py-2.5 rounded-xl sm:rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 shrink-0 shadow-sm"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 shadow-sm"
               >
-                <div className="flex items-center gap-2.5">
-                  <GoogleLogoIcon className="w-5 h-5 sm:w-6 sm:h-6" />
-                  <span className="text-2xl sm:text-3xl font-heading font-bold leading-none">{overallRating.toFixed(1)}</span>
+                <GoogleLogoIcon className="w-4 h-4" />
+                <span className="text-xs sm:text-sm font-heading font-semibold leading-none">{overallRating.toFixed(1)}</span>
+                <div className="flex items-center gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 fill-amber-500 text-amber-500" />
+                  ))}
                 </div>
-                <div>
-                  <div className="flex items-center gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-amber-500 text-amber-500" />
-                    ))}
-                  </div>
-                  <span className="text-[10px] sm:text-[11px] font-sans text-zinc-600 dark:text-zinc-400 block mt-0.5 font-medium">
-                    {totalCount} Google Yorumu
-                  </span>
-                </div>
+                <span className="text-[10px] font-sans text-zinc-500 dark:text-zinc-400 font-medium">({totalCount})</span>
               </motion.div>
 
               <a
                 href={googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-sans font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:underline inline-flex items-center gap-1 shrink-0 px-1"
+                className="text-xs font-sans font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:underline inline-flex items-center gap-1 px-1"
               >
                 <span>Google Haritalar'da Aç</span>
                 <ExternalLink className="w-3 h-3 text-blue-500" />
