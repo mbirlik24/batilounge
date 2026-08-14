@@ -109,6 +109,29 @@ export default function Hero({ onOpenReservation }: HeroProps) {
               Masa Ayırt
             </button>
           </motion.div>
+
+          {/* Quick Glass Feature Badges (Fills empty lower-middle space elegantly) */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.35, ease: [0.23, 1, 0.32, 1] }}
+            className="mt-6 sm:mt-10 grid grid-cols-3 gap-2 sm:gap-3.5 max-w-xl"
+          >
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/10 dark:bg-black/40 backdrop-blur-md border border-white/15 text-white shadow-apple-sm flex flex-col items-start gap-0.5">
+              <span className="text-[10px] sm:text-xs font-sans text-amber-400 font-medium">✨ 7/24 Açık</span>
+              <span className="text-[11px] sm:text-xs font-heading font-normal leading-tight">Sıcak Mutfak & Nargile</span>
+            </div>
+
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/10 dark:bg-black/40 backdrop-blur-md border border-white/15 text-white shadow-apple-sm flex flex-col items-start gap-0.5">
+              <span className="text-[10px] sm:text-xs font-sans text-emerald-400 font-medium">🎲 Ücretsiz</span>
+              <span className="text-[11px] sm:text-xs font-heading font-normal leading-tight">Oyun Salonu & Okey</span>
+            </div>
+
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/10 dark:bg-black/40 backdrop-blur-md border border-white/15 text-white shadow-apple-sm flex flex-col items-start gap-0.5">
+              <span className="text-[10px] sm:text-xs font-sans text-sky-400 font-medium">🌿 Ferah Teras</span>
+              <span className="text-[11px] sm:text-xs font-heading font-normal leading-tight">Açık Balkon Keyfi</span>
+            </div>
+          </motion.div>
         </div>
       </div>
 
