@@ -44,7 +44,7 @@ export default function Hero({ onOpenReservation }: HeroProps) {
   };
 
   return (
-    <section className="snap-section relative min-h-[88vh] lg:h-screen lg:min-h-[100dvh] w-full flex flex-col justify-between pt-20 sm:pt-24 pb-4 sm:pb-6 overflow-hidden bg-[#0A0A0C]">
+    <section className="snap-section relative h-[100dvh] min-h-[100dvh] w-full flex flex-col justify-between pt-20 sm:pt-24 pb-4 sm:pb-6 overflow-hidden bg-[#0A0A0C]">
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0 bg-[#0A0A0C] overflow-hidden">
         <video
