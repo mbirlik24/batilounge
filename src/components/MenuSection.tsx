@@ -51,7 +51,7 @@ interface MenuSectionProps {
 
 export default function MenuSection({ onOpenReservation }: MenuSectionProps) {
   return (
-    <section id="menu" className="snap-section py-20 sm:py-28 bg-[#F5F5F7] dark:bg-black border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
+    <section id="menu" className="snap-section py-10 sm:py-20 bg-[#F5F5F7] dark:bg-black border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">

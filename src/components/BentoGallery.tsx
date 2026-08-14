@@ -86,7 +86,7 @@ export default function BentoGallery() {
   }, [lightboxIndex]);
 
   return (
-    <section id="galeri" className="snap-section py-16 sm:py-32 bg-[#F5F5F7] dark:bg-black border-t border-b border-black/[0.06] dark:border-white/[0.08]">
+    <section id="galeri" className="snap-section py-10 sm:py-20 bg-[#F5F5F7] dark:bg-black border-t border-b border-black/[0.06] dark:border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12">

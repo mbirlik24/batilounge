@@ -51,7 +51,7 @@ export default function ReservationSection() {
   };
 
   return (
-    <section id="rezervasyon" className="py-20 sm:py-28 bg-[#F5F5F7] dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
+    <section id="rezervasyon" className="py-10 sm:py-20 bg-[#F5F5F7] dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
       {/* Background Soft Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/5 blur-[140px] pointer-events-none rounded-full" />
 

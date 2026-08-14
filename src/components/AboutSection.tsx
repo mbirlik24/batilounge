@@ -29,7 +29,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="hakkimizda" className="snap-section py-20 sm:py-28 bg-white dark:bg-[#09090B] border-t border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
+    <section id="hakkimizda" className="snap-section py-10 sm:py-20 bg-white dark:bg-[#09090B] border-t border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
       {/* Background Soft Glow */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-amber-500/5 blur-[130px] pointer-events-none rounded-full" />
 

@@ -65,7 +65,7 @@ export default function StoryAtmosphere() {
   const currentTab = cycles[activeCycle];
 
   return (
-    <section id="hikaye" className="snap-section py-12 sm:py-20 bg-[#F5F5F7] dark:bg-black border-t border-b border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
+    <section id="hikaye" className="snap-section py-8 sm:py-16 bg-[#F5F5F7] dark:bg-black border-t border-b border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
       {/* Background Soft Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-amber-500/5 blur-[120px] pointer-events-none rounded-full" />
 

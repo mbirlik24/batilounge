@@ -7,7 +7,7 @@ import TypewriterHeading from '@/components/TypewriterHeading';
 
 export default function InstagramFeed() {
   return (
-    <section id="instagram" className="snap-section py-16 sm:py-24 bg-white dark:bg-[#09090B] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
+    <section id="instagram" className="snap-section py-8 sm:py-16 bg-white dark:bg-[#09090B] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
       {/* Elfsight Platform Script */}
       <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
 

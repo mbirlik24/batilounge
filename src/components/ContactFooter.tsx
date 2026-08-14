@@ -9,7 +9,7 @@ export default function ContactFooter() {
   };
 
   return (
-    <footer id="iletisim" className="bg-white dark:bg-[#09090B] text-zinc-900 dark:text-zinc-100 pt-20 pb-12 border-t border-zinc-200 dark:border-zinc-800">
+    <footer id="iletisim" className="bg-white dark:bg-[#09090B] text-zinc-900 dark:text-zinc-100 pt-10 pb-8 border-t border-zinc-200 dark:border-zinc-800">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-zinc-100 dark:border-zinc-800">
           {/* Brand Info */}

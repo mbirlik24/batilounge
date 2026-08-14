@@ -159,7 +159,7 @@ export default function Testimonials() {
   });
 
   return (
-    <section id="google-reviews" className="snap-section py-16 sm:py-28 bg-zinc-50 dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
+    <section id="google-reviews" className="snap-section py-10 sm:py-20 bg-zinc-50 dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[300px] sm:h-[400px] bg-amber-500/5 dark:bg-amber-500/10 blur-[120px] pointer-events-none rounded-full" />
 
