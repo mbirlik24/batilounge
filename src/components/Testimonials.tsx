@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ExternalLink, MessageSquare, Filter, MapPin, Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import TypewriterHeading from '@/components/TypewriterHeading';
@@ -157,6 +157,30 @@ export default function Testimonials() {
     if (activeFilter === '5 Yıldız') return rev.rating === 5;
     return true;
   });
+
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    let interval: NodeJS.Timeout;
+    const startAutoScroll = () => {
+      interval = setInterval(() => {
+        if (window.innerWidth < 768 && slider) {
+          const maxScroll = slider.scrollWidth - slider.clientWidth;
+          if (slider.scrollLeft >= maxScroll - 15) {
+            slider.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            slider.scrollBy({ left: 290, behavior: 'smooth' });
+          }
+        }
+      }, 4500);
+    };
+
+    startAutoScroll();
+    return () => clearInterval(interval);
+  }, [filteredReviews]);
 
   return (
     <section id="google-reviews" className="snap-section py-10 sm:py-20 bg-zinc-50 dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
@@ -322,7 +346,7 @@ export default function Testimonials() {
               </div>
             ) : (
               /* Review Cards Grid inside Master Card with Sweet Micro-Animations - Single horizontal row on mobile */
-              <motion.div layout className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3.5 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 pb-2 md:pb-0">
+              <motion.div ref={sliderRef} layout className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 sm:gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 pb-2 md:pb-0 px-0.5">
                 <AnimatePresence mode="popLayout">
                   {filteredReviews.map((review, idx) => {
                     return (
@@ -334,7 +358,7 @@ export default function Testimonials() {
                         exit={{ opacity: 0, scale: 0.95 }}
                         whileHover={{ y: -3, transition: { duration: 0.2 } }}
                         transition={{ duration: 0.35, delay: idx * 0.05, ease: [0.23, 1, 0.32, 1] }}
-                        className="w-[82vw] max-w-[310px] sm:w-[340px] md:w-auto shrink-0 snap-start p-4 sm:p-6 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col justify-between shadow-apple-sm relative group"
+                        className="w-[82vw] max-w-[315px] sm:w-[340px] md:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col justify-between shadow-apple-sm relative group"
                       >
                         <div>
                           {/* Top Author Bar */}
