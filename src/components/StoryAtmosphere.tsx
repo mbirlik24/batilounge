@@ -37,8 +37,8 @@ export default function StoryAtmosphere() {
     {
       id: 'evening',
       tabLabel: 'Akşam Gastronomisi',
-      title: 'Akşam Gastronomisi & Şef Menüsü',
-      subtitle: 'Şefin özel et yemekleri, tatlılar ve sıcak ambiyans',
+      title: 'Akşam Gastronomisi & Özel Lezzetler',
+      subtitle: 'Özel et yemekleri, tatlılar ve sıcak ambiyans',
       desc: 'Günün yorgunluğunu unutturan sıcak ahşap ve deri dekorasyon. Cafe de Paris soslu dinlendirilmiş bonfile, çıtır atıştırmalıklar ve fırından sıcak çıkan Belçika çikolatalı sufle.',
       specs: [
         'Cafe de Paris & Lokum Bonfile',
@@ -80,7 +80,7 @@ export default function StoryAtmosphere() {
             className="text-2xl sm:text-4xl lg:text-5xl font-heading font-light sm:font-normal text-[#1D1D1F] dark:text-white tracking-tight leading-[1.1]"
           />
           <p className="mt-2 text-xs sm:text-sm font-sans font-light text-[#86868B] dark:text-zinc-400 max-w-2xl">
-            Doğayla iç içe açık hava balkonu, geniş oyun salonu ve lezzetli şef mutfağımızla 7/24 hizmetinizdeyiz.
+            Doğayla iç içe açık hava balkonu, geniş oyun salonu ve lezzetli mutfağımızla 7/24 hizmetinizdeyiz.
           </p>
         </div>
 

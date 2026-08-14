@@ -4,7 +4,7 @@ export interface MenuItem {
   category: string;
   price: number;
   description: string;
-  tag?: string; // 'Şefin İmzası', 'Popüler', 'Özel Sunum', 'Ev Yapımı', 'Vejetaryen', '24/7 Favori'
+  tag?: string; // 'Özel Lezzet', 'Popüler', 'Özel Sunum', 'Ev Yapımı', 'Vejetaryen', '24/7 Favori'
   prepTime?: string;
   calories?: string;
   image?: string;
@@ -20,7 +20,7 @@ export interface MenuCategory {
 
 export const MENU_CATEGORIES: MenuCategory[] = [
   { id: 'all', name: 'Tüm Menü', iconName: 'Utensils', description: 'Bati Lounge lezzet koleksiyonu' },
-  { id: 'ana-yemek', name: 'Ana Yemek & Izgara', iconName: 'Flame', description: 'Özenle dinlendirilmiş etler ve şef sosları' },
+  { id: 'ana-yemek', name: 'Ana Yemek & Izgara', iconName: 'Flame', description: 'Özenle dinlendirilmiş etler ve özel soslar' },
   { id: 'kahvalti', name: 'Kahvaltı & Brunch', iconName: 'SunMedium', description: 'Günün her saati taze ve zengin lezzetler' },
   { id: 'atistirmalik', name: 'Atıştırmalık & Başlangıç', iconName: 'Sparkles', description: 'Paylaşımlık sıcak tabaklar ve sepetler' },
   { id: 'burger-wrap', name: 'Burger & Wrap', iconName: 'Sandwich', description: 'El yapımı brioche ekmekleri ve sulu köfteler' },
@@ -40,7 +40,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'ana-yemek',
     price: 920,
     description: '220g dinlendirilmiş dana bonfile dilimleri, otantik Cafe de Paris tereyağlı baharat sosu, fırınlanmış sebzeler ve el kesimi patates tava eşliğinde.',
-    tag: 'Şefin İmzası',
+    tag: 'Özel Lezzet',
     prepTime: '20 dk',
     calories: '680 kcal',
     image: '/menu-images/bonfile-cafe-de-paris-soslu.jpeg'
@@ -84,7 +84,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'ana-yemek',
     price: 650,
     description: 'Altın sarısı panko kaplı taze tavuk göğsü, zengin aromalı Cafe de Paris sos ve hafif roka salatası.',
-    tag: 'Şefin Seçimi',
+    tag: 'Özel Lezzet',
     prepTime: '15 dk',
     calories: '620 kcal',
     image: '/menu-images/schnitzel-cafe-de-paris-soslu.jpeg'
@@ -178,7 +178,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'kahvalti',
     price: 1500,
     description: 'Ezine beyaz peynir, eski kaşar, çeçil, tulum peyniri, siyah & yeşil zeytin, petek bal-kaymak, ev reçelleri, çikolata kreması, sucuk tava, sahanda yumurta, sigara böreği, patates tava, simit, taze söğüş tabağı ve sınırsız demlik çay.',
-    tag: 'Şefin İmzası',
+    tag: 'Popüler',
     prepTime: '15 dk',
     calories: '1450 kcal',
     image: '/menu-images/serpme-kahvalti.jpeg'
@@ -348,7 +348,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'burger-wrap',
     price: 570,
     description: '180g ev yapımı dana köfte, karamelize soğan, çıtır füme kaburga, eritilmiş cheddar, trüf mayonez, taze marul, brioche ekmeği ve baharatlı patates.',
-    tag: 'Şefin İmzası',
+    tag: 'Özel Lezzet',
     prepTime: '15 dk',
     calories: '840 kcal',
     image: '/menu-images/burger-bati-lounge.jpeg'
@@ -413,7 +413,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'pizza-pide',
     price: 610,
     description: 'İtalyan domates sosu, mozzarella, dana sucuk, füme et dilimleri, mantar, közlenmiş kapya biber, mısır ve kekikli zeytinyağı.',
-    tag: 'Şefin İmzası',
+    tag: 'Özel Lezzet',
     prepTime: '15 dk',
     calories: '880 kcal',
     image: '/menu-images/bati-lounge-special-pizza.jpeg'
@@ -570,7 +570,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'makarna-salata',
     price: 480,
     description: 'Sotelenmiş dana bonfile parçaları, kestane mantarı, demi-glace krema sosu ve parmesan rendesi.',
-    tag: 'Şefin Seçimi',
+    tag: 'Özel Lezzet',
     prepTime: '14 dk',
     calories: '690 kcal',
     image: '/menu-images/penne-al-karne.jpeg'
@@ -656,7 +656,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'tatli',
     price: 360,
     description: 'Belçika çikolatasıyla anında fırınlanan akışkan sıcak sufle, yanında vanilyalı Maraş dondurması ile.',
-    tag: 'Şefin İmzası',
+    tag: 'Popüler',
     prepTime: '12 dk',
     calories: '510 kcal',
     image: '/menu-images/sufle-ev-yapimi.jpeg'

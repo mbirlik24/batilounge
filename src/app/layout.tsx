@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: '%s | Batı Lounge Zekeriyaköy',
   },
   description:
-    'Batı Lounge Zekeriyaköy; 7/24 kesintisiz mutfak, zengin serpme kahvaltı, şef imzalı etler, açık hava balkon terası, ücretsiz okey & oyun salonu ve nargile keyfiyle Alya Evleri Sarıyer’de hizmetinizde.',
+    'Batı Lounge Zekeriyaköy; 7/24 kesintisiz mutfak, zengin serpme kahvaltı, özel et yemekleri, açık hava balkon terası, ücretsiz okey & oyun salonu ve nargile keyfiyle Alya Evleri Sarıyer’de hizmetinizde.',
   keywords: [
     'Batı Lounge',
     'Batı Lounge Zekeriyaköy',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Batı Lounge — Zekeriyaköy 7/24 Gastronomi & Lounge',
     description:
-      'Zekeriyaköy Alya Evleri’nde 7/24 kesintisiz şef mutfağı, açık balkon terası, okey & oyun salonu ve nargile keyfi.',
+      'Zekeriyaköy Alya Evleri’nde 7/24 kesintisiz mutfak, açık balkon terası, okey & oyun salonu ve nargile keyfi.',
     url: 'https://batilounge.com',
     siteName: 'Batı Lounge Zekeriyaköy',
     images: [
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Batı Lounge — Zekeriyaköy 7/24 Gastronomi & Lounge',
     description:
-      'Zekeriyaköy Alya Evleri’nde 7/24 kesintisiz şef mutfağı, açık balkon terası, oyun salonu ve nargile.',
+      'Zekeriyaköy Alya Evleri’nde 7/24 kesintisiz mutfak, açık balkon terası, oyun salonu ve nargile.',
     images: ['https://batilounge.com/images/hero.jpg'],
   },
   robots: {

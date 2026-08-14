@@ -54,7 +54,7 @@ export default function AboutSection() {
                 Temmuz 2026'da Zekeriyaköy Alya Evleri bünyesinde kapılarını açan Batı Lounge; günün her anına eşlik eden sıcak ambiyansı, doğayla iç içe açık hava balkonu ve özenle tasarlanmış iç mekanlarıyla hizmet vermektedir.
               </p>
               <p>
-                Amacımız; dostlarınızla keyifli vakit geçirebileceğiniz, masa ücreti ödemeden okey ve masa oyunları oynayabileceğiniz, günün 24 saati lezzetli şef yemeklerine ve premium nargile harmanlarına ulaşabileceğiniz nezih bir yaşam alanı sunmaktır.
+                Amacımız; dostlarınızla keyifli vakit geçirebileceğiniz, masa ücreti ödemeden okey ve masa oyunları oynayabileceğiniz, günün 24 saati lezzetli gurme yemeklere ve premium nargile harmanlarına ulaşabileceğiniz nezih bir yaşam alanı sunmaktır.
               </p>
             </div>
           </div>

@@ -14,7 +14,7 @@ export default function HakkimizdaPage() {
   const values = [
     {
       title: '7/24 Kesintisiz Hizmet',
-      desc: 'Günün 24 saati sıcak şef mutfağı, taze demlenmiş çay ve özel nargile harmanları ile kesintisiz konfor.',
+      desc: 'Günün 24 saati sıcak mutfak, taze demlenmiş çay ve özel nargile harmanları ile kesintisiz konfor.',
     },
     {
       title: 'Masa Ücreti Alınmaz',
@@ -56,12 +56,12 @@ export default function HakkimizdaPage() {
             />
           </Link>
 
-          <button
-            onClick={() => setIsReservationOpen(true)}
+          <Link
+            href="/menu"
             className="apple-btn px-4 sm:px-5 py-2 rounded-full bg-[#1D1D1F] hover:bg-black dark:bg-white dark:hover:bg-zinc-100 text-white dark:text-[#1D1D1F] font-heading font-medium text-xs tracking-tight shadow-sm"
           >
-            Masa Ayırt
-          </button>
+            Menüyü Gör
+          </Link>
         </div>
       </header>
 
@@ -105,7 +105,7 @@ export default function HakkimizdaPage() {
               Temmuz 2026 tarihinde Zekeriyaköy Alya Evleri lokasyonunda kapılarını açan Batı Lounge; sadece bir kafe veya restoran değil, günün her saatinde kendinizi evinizde hissedeceğiniz nezih bir buluşma noktasıdır.
             </p>
             <p>
-              Doğayla iç içe açık hava balkonu, arkadaşlarınızla keyifli vakit geçirebileceğiniz masa ücreti olmayan özel oyun salonumuz, zengin nargile harmanlarımız ve şeflerimizin hazırladığı Cafe de Paris bonfileden taş fırın pizzalara kadar uzanan gurme lezzetlerimizle hizmet vermekteyiz.
+              Doğayla iç içe açık hava balkonu, arkadaşlarınızla keyifli vakit geçirebileceğiniz masa ücreti olmayan özel oyun salonumuz, zengin nargile harmanlarımız ve mutfağımızdan çıkan Cafe de Paris bonfileden taş fırın pizzalara kadar uzanan gurme lezzetlerimizle hizmet vermekteyiz.
             </p>
 
             <div className="pt-4 flex items-center gap-3">

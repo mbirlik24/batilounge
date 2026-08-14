@@ -13,7 +13,7 @@ export default function JsonLd() {
         logo: 'https://batilounge.com/images/logo-dark.png',
         image: 'https://batilounge.com/images/hero.jpg',
         description:
-          'Zekeriyaköy Alya Evleri’nde 7 gün 24 saat kesintisiz mutfak, açık balkon terası, ücretsiz okey & oyun salonu, şef imzalı etler, serpme kahvaltı ve nargile keyfi.',
+          'Zekeriyaköy Alya Evleri’nde 7 gün 24 saat kesintisiz mutfak, açık balkon terası, ücretsiz okey & oyun salonu, özel et yemekleri, serpme kahvaltı ve nargile keyfi.',
         telephone: '+905418284342',
         priceRange: '₺₺',
         servesCuisine: [

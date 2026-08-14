@@ -22,7 +22,7 @@ const HIGHLIGHT_ITEMS = [
     subtitle: 'Dinlendirilmiş Dana Bonfile • 220g',
     description: 'Gizli tarifli özel tereyağlı sıcak Cafe de Paris sosu, çıtır kibrit patatesler ve roka salatası ile.',
     price: '920',
-    tag: 'Şefin İmzası',
+    tag: 'Özel Lezzet',
     badge: 'Çok Satan',
   },
   {

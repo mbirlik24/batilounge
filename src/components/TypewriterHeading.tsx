@@ -18,41 +18,66 @@ export default function TypewriterHeading({
   lines,
   className = '',
   as = 'h2',
-  speed = 22,
-  delay = 80,
+  speed = 50,
+  delay = 150,
   showCursor = true,
 }: TypewriterHeadingProps) {
   const ref = useRef<HTMLHeadingElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-40px' });
+  const isInView = useInView(ref, { once: true, amount: 0.01 });
+  const [started, setStarted] = useState(false);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDone, setIsDone] = useState(false);
 
   const targetLines = lines || (text ? text.split('\n') : []);
   const fullText = targetLines.join('\n');
 
-  const [charCount, setCharCount] = useState(0);
-  const [isDone, setIsDone] = useState(false);
+  useEffect(() => {
+    if (isInView) {
+      setStarted(true);
+      return;
+    }
+    // Fallback for initial load if element is inside viewport
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        setStarted(true);
+      }
+    }
+  }, [isInView]);
+
+  // Additional mount fallback to ensure immediate start on page load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setStarted(true);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!started) return;
 
-    let count = 0;
-    const timeout = setTimeout(() => {
-      const interval = setInterval(() => {
-        if (count < fullText.length) {
-          count++;
-          setCharCount(count);
-        } else {
-          clearInterval(interval);
+    let timer: NodeJS.Timeout;
+    const delayTimer = setTimeout(() => {
+      let current = 0;
+      timer = setInterval(() => {
+        current++;
+        setCharIndex(current);
+        if (current >= fullText.length) {
+          clearInterval(timer);
           setIsDone(true);
         }
       }, speed);
-
-      return () => clearInterval(interval);
     }, delay);
 
-    return () => clearTimeout(timeout);
-  }, [isInView, fullText, speed, delay]);
+    return () => {
+      clearTimeout(delayTimer);
+      if (timer) clearInterval(timer);
+    };
+  }, [started, fullText, speed, delay]);
 
   const Tag = as;
+  const currentText = fullText.slice(0, charIndex);
+  const currentLines = currentText.split('\n');
 
   return (
     <Tag ref={ref} className={`relative ${className}`}>
@@ -66,28 +91,20 @@ export default function TypewriterHeading({
         ))}
       </span>
 
-      {/* Visible Typing Character Layer */}
+      {/* Visible Typing Layer */}
       <span className="absolute inset-0 top-0 left-0">
-        {targetLines.map((line, idx) => {
-          let previousLinesLength = 0;
-          for (let i = 0; i < idx; i++) {
-            previousLinesLength += targetLines[i].length + 1;
-          }
-          const currentLineChars = Math.max(
-            0,
-            Math.min(line.length, charCount - previousLinesLength)
-          );
-          const lineText = line.slice(0, currentLineChars);
-
-          return (
-            <React.Fragment key={idx}>
-              {lineText}
-              {idx < targetLines.length - 1 && currentLineChars === line.length && <br />}
-            </React.Fragment>
-          );
-        })}
-        {!isDone && isInView && showCursor && (
-          <span className="inline-block w-[2px] h-[0.82em] bg-current ml-0.5 align-middle animate-pulse" />
+        {currentLines.map((line, idx) => (
+          <React.Fragment key={idx}>
+            {line}
+            {idx < currentLines.length - 1 && <br />}
+          </React.Fragment>
+        ))}
+        {showCursor && (
+          <span
+            className={`inline-block w-[3px] h-[0.82em] bg-amber-400 ml-1 align-baseline ${
+              isDone ? 'animate-pulse opacity-60' : 'animate-pulse opacity-100'
+            }`}
+          />
         )}
       </span>
     </Tag>
