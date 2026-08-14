@@ -163,33 +163,23 @@ export default function Testimonials() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start 85%', 'end 15%'],
+    offset: ['start 80%', 'end 20%'],
   });
 
-  // Fast & proportional horizontal shift bound directly to vertical page scroll
-  const xMobileShift = useTransform(scrollYProgress, [0, 1], ['0px', '-450px']);
-
+  // Directly sync vertical page scroll to horizontal review slider scroll position
   useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    let interval: NodeJS.Timeout;
-    const startAutoScroll = () => {
-      interval = setInterval(() => {
-        if (window.innerWidth < 768 && slider) {
-          const maxScroll = slider.scrollWidth - slider.clientWidth;
-          if (slider.scrollLeft >= maxScroll - 15) {
-            slider.scrollTo({ left: 0, behavior: 'smooth' });
-          } else {
-            slider.scrollBy({ left: 290, behavior: 'smooth' });
-          }
+    const unsubscribe = scrollYProgress.on('change', (progress) => {
+      const slider = sliderRef.current;
+      if (slider && window.innerWidth < 768) {
+        const maxScroll = slider.scrollWidth - slider.clientWidth;
+        if (maxScroll > 0) {
+          slider.scrollLeft = Math.min(maxScroll, progress * maxScroll * 1.3);
         }
-      }, 4500);
-    };
+      }
+    });
 
-    startAutoScroll();
-    return () => clearInterval(interval);
-  }, [filteredReviews]);
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   return (
     <section ref={sectionRef} id="google-reviews" className="snap-section py-10 sm:py-20 bg-zinc-50 dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
@@ -360,7 +350,7 @@ export default function Testimonials() {
               </div>
             ) : (
               /* Review Cards Grid inside Master Card with Sweet Micro-Animations - Single horizontal row on mobile */
-              <motion.div ref={sliderRef} style={{ x: xMobileShift }} layout className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 sm:gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 pb-2 md:pb-0 px-0.5">
+              <motion.div ref={sliderRef} layout className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 sm:gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 pb-2 md:pb-0 px-0.5">
                 <AnimatePresence mode="popLayout">
                   {filteredReviews.map((review, idx) => {
                     return (
