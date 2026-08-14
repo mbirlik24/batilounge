@@ -307,15 +307,18 @@ export default function Testimonials() {
                   </button>
                 ))}
               </div>
+              <span className="text-[11px] font-sans text-zinc-400 md:hidden shrink-0 flex items-center gap-1">
+                Yatay kaydırın →
+              </span>
             </div>
 
             {/* Loading Skeletons */}
             {isLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+              <div className="flex overflow-x-auto scrollbar-none gap-3.5 md:grid md:grid-cols-3 md:gap-6 pb-2 md:pb-0">
                 {[1, 2, 3].map((n) => (
                   <div
                     key={n}
-                    className="p-5 sm:p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 animate-pulse space-y-4"
+                    className="w-[82vw] max-w-[310px] sm:w-[340px] md:w-auto shrink-0 p-5 sm:p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 animate-pulse space-y-4"
                   >
                     <div className="flex items-center justify-between">
                       <div className="h-4 w-24 bg-zinc-200 dark:bg-zinc-800 rounded" />
@@ -327,8 +330,8 @@ export default function Testimonials() {
                 ))}
               </div>
             ) : (
-              /* Review Cards Grid inside Master Card with Sweet Micro-Animations */
-              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              /* Review Cards Grid inside Master Card with Sweet Micro-Animations - Single horizontal row on mobile */
+              <motion.div layout className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3.5 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 pb-2 md:pb-0">
                 <AnimatePresence mode="popLayout">
                   {filteredReviews.map((review, idx) => {
                     return (
@@ -340,7 +343,7 @@ export default function Testimonials() {
                         exit={{ opacity: 0, scale: 0.95 }}
                         whileHover={{ y: -3, transition: { duration: 0.2 } }}
                         transition={{ duration: 0.35, delay: idx * 0.05, ease: [0.23, 1, 0.32, 1] }}
-                        className="p-4 sm:p-6 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col justify-between shadow-apple-sm relative group"
+                        className="w-[82vw] max-w-[310px] sm:w-[340px] md:w-auto shrink-0 snap-start p-4 sm:p-6 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col justify-between shadow-apple-sm relative group"
                       >
                         <div>
                           {/* Top Author Bar */}
