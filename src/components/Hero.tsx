@@ -102,12 +102,12 @@ export default function Hero({ onOpenReservation }: HeroProps) {
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
 
-            <button
-              onClick={onOpenReservation}
-              className="apple-btn w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-heading font-medium text-xs sm:text-sm tracking-tight flex items-center justify-center text-center"
+            <a
+              href="/menu"
+              className="apple-btn w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-xl border border-white/35 text-white font-heading font-medium text-xs sm:text-sm tracking-tight shadow-md flex items-center justify-center text-center"
             >
-              <span>Masa Ayırt</span>
-            </button>
+              <span>Menüyü Gör</span>
+            </a>
           </motion.div>
         </div>
       </div>
