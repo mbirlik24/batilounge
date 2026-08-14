@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Star, ExternalLink, MessageSquare, Filter, MapPin, Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import TypewriterHeading from '@/components/TypewriterHeading';
 
@@ -158,7 +158,16 @@ export default function Testimonials() {
     return true;
   });
 
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const sliderRef = useRef<HTMLDivElement | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start 85%', 'end 15%'],
+  });
+
+  // Fast & proportional horizontal shift bound directly to vertical page scroll
+  const xMobileShift = useTransform(scrollYProgress, [0, 1], ['0px', '-450px']);
 
   useEffect(() => {
     const slider = sliderRef.current;
@@ -183,7 +192,7 @@ export default function Testimonials() {
   }, [filteredReviews]);
 
   return (
-    <section id="google-reviews" className="snap-section py-10 sm:py-20 bg-zinc-50 dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
+    <section ref={sectionRef} id="google-reviews" className="snap-section py-10 sm:py-20 bg-zinc-50 dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[300px] sm:h-[400px] bg-amber-500/5 dark:bg-amber-500/10 blur-[120px] pointer-events-none rounded-full" />
 
@@ -351,7 +360,7 @@ export default function Testimonials() {
               </div>
             ) : (
               /* Review Cards Grid inside Master Card with Sweet Micro-Animations - Single horizontal row on mobile */
-              <motion.div ref={sliderRef} layout className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 sm:gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 pb-2 md:pb-0 px-0.5">
+              <motion.div ref={sliderRef} style={{ x: xMobileShift }} layout className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 sm:gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 pb-2 md:pb-0 px-0.5">
                 <AnimatePresence mode="popLayout">
                   {filteredReviews.map((review, idx) => {
                     return (
