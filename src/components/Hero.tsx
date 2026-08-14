@@ -95,19 +95,19 @@ export default function Hero({ onOpenReservation }: HeroProps) {
             className="flex flex-wrap items-center gap-3.5"
           >
             <button
-              onClick={onOpenReservation}
+              onClick={handleScrollNext}
               className="apple-btn px-7 py-3.5 rounded-full bg-white hover:bg-zinc-100 text-[#1D1D1F] font-heading font-medium text-xs tracking-tight shadow-apple-md flex items-center gap-2"
             >
-              <span>Masa Ayırt</span>
+              <span>Keşfet</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
 
-            <a
-              href="/menu"
+            <button
+              onClick={onOpenReservation}
               className="apple-btn px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-heading font-medium text-xs tracking-tight"
             >
-              Menüyü Keşfet
-            </a>
+              Masa Ayırt
+            </button>
           </motion.div>
         </div>
       </div>
