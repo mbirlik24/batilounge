@@ -94,24 +94,24 @@ export default function Hero({ onOpenReservation }: HeroProps) {
             Zekeriyaköy’de 7 gün 24 saat kesintisiz mutfak, açık balkon terası, oyun salonu ve dingin lounge atmosferi
           </motion.p>
 
-          {/* Action Buttons (Stretched 50/50 & Centered on Mobile) */}
+          {/* Action Buttons (Wider & Stretched Layout) */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.28, ease: [0.23, 1, 0.32, 1] }}
-            className="grid grid-cols-2 gap-3 w-full max-w-md sm:flex sm:w-auto"
+            className="grid grid-cols-2 gap-4 w-full max-w-lg sm:max-w-xl"
           >
             <button
               onClick={handleScrollNext}
-              className="apple-btn w-full sm:w-auto px-6 py-3.5 rounded-full bg-white hover:bg-zinc-100 text-[#1D1D1F] font-heading font-medium text-xs sm:text-sm tracking-tight shadow-apple-md flex items-center justify-center gap-2"
+              className="apple-btn w-full px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-white hover:bg-zinc-100 text-[#1D1D1F] font-heading font-medium text-xs sm:text-sm tracking-tight shadow-apple-md flex items-center justify-center gap-2"
             >
               <span>Keşfet</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4" />
             </button>
 
             <a
               href="/menu"
-              className="apple-btn w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-xl border border-white/35 text-white font-heading font-medium text-xs sm:text-sm tracking-tight shadow-md flex items-center justify-center text-center"
+              className="apple-btn w-full px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-xl border border-white/35 text-white font-heading font-medium text-xs sm:text-sm tracking-tight shadow-md flex items-center justify-center text-center"
             >
               <span>Menüyü Gör</span>
             </a>
