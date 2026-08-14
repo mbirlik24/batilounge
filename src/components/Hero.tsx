@@ -87,16 +87,16 @@ export default function Hero({ onOpenReservation }: HeroProps) {
             Zekeriyaköy’de 7 gün 24 saat kesintisiz mutfak, açık balkon terası, oyun salonu ve dingin lounge atmosferi.
           </motion.p>
 
-          {/* Action Buttons */}
+          {/* Action Buttons (Stretched 50/50 & Centered on Mobile) */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.28, ease: [0.23, 1, 0.32, 1] }}
-            className="flex flex-wrap items-center gap-3.5"
+            className="grid grid-cols-2 gap-3 w-full max-w-md sm:flex sm:w-auto"
           >
             <button
               onClick={handleScrollNext}
-              className="apple-btn px-7 py-3.5 rounded-full bg-white hover:bg-zinc-100 text-[#1D1D1F] font-heading font-medium text-xs tracking-tight shadow-apple-md flex items-center gap-2"
+              className="apple-btn w-full sm:w-auto px-6 py-3.5 rounded-full bg-white hover:bg-zinc-100 text-[#1D1D1F] font-heading font-medium text-xs sm:text-sm tracking-tight shadow-apple-md flex items-center justify-center gap-2"
             >
               <span>Keşfet</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -104,9 +104,9 @@ export default function Hero({ onOpenReservation }: HeroProps) {
 
             <button
               onClick={onOpenReservation}
-              className="apple-btn px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-heading font-medium text-xs tracking-tight"
+              className="apple-btn w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-heading font-medium text-xs sm:text-sm tracking-tight flex items-center justify-center text-center"
             >
-              Masa Ayırt
+              <span>Masa Ayırt</span>
             </button>
           </motion.div>
         </div>
