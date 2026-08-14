@@ -201,16 +201,9 @@ export default function Testimonials() {
               </motion.div>
 
               <div>
-                <h3 className="text-xl sm:text-3xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight mb-0.5 sm:mb-1">
+                <h3 className="text-xl sm:text-3xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight">
                   {placeName}
                 </h3>
-                <p className="text-[11px] sm:text-sm font-sans text-zinc-500 dark:text-zinc-400 flex flex-wrap items-center gap-x-2 sm:gap-x-3 gap-y-0.5">
-                  <span className="flex items-center gap-1 text-zinc-700 dark:text-zinc-300 font-medium">
-                    <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 shrink-0" /> {formattedAddress}
-                  </span>
-                  <span>•</span>
-                  <span className="text-emerald-600 dark:text-emerald-400 font-medium">🟢 7/24 Açık</span>
-                </p>
               </div>
             </div>
 
