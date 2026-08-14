@@ -109,31 +109,24 @@ export default function Hero({ onOpenReservation }: HeroProps) {
               Masa Ayırt
             </button>
           </motion.div>
-
-          {/* Quick Glass Feature Badges (Fills empty lower-middle space elegantly) */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.35, ease: [0.23, 1, 0.32, 1] }}
-            className="mt-6 sm:mt-10 grid grid-cols-3 gap-2 sm:gap-3.5 max-w-xl"
-          >
-            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/10 dark:bg-black/40 backdrop-blur-md border border-white/15 text-white shadow-apple-sm flex flex-col items-start gap-0.5">
-              <span className="text-[10px] sm:text-xs font-sans text-amber-400 font-medium">✨ 7/24 Açık</span>
-              <span className="text-[11px] sm:text-xs font-heading font-normal leading-tight">Sıcak Mutfak & Nargile</span>
-            </div>
-
-            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/10 dark:bg-black/40 backdrop-blur-md border border-white/15 text-white shadow-apple-sm flex flex-col items-start gap-0.5">
-              <span className="text-[10px] sm:text-xs font-sans text-emerald-400 font-medium">🎲 Ücretsiz</span>
-              <span className="text-[11px] sm:text-xs font-heading font-normal leading-tight">Oyun Salonu & Okey</span>
-            </div>
-
-            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/10 dark:bg-black/40 backdrop-blur-md border border-white/15 text-white shadow-apple-sm flex flex-col items-start gap-0.5">
-              <span className="text-[10px] sm:text-xs font-sans text-sky-400 font-medium">🌿 Ferah Teras</span>
-              <span className="text-[11px] sm:text-xs font-heading font-normal leading-tight">Açık Balkon Keyfi</span>
-            </div>
-          </motion.div>
         </div>
       </div>
+
+      {/* Sleek Single-Row Glass Pill Bar (Positioned Further Down, Zero Icons) */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.35, ease: [0.23, 1, 0.32, 1] }}
+        className="relative z-10 w-full flex justify-center px-4 mt-auto mb-2"
+      >
+        <div className="inline-flex items-center gap-2.5 sm:gap-4 px-4 sm:px-6 py-2 rounded-full bg-white/10 dark:bg-black/40 backdrop-blur-md border border-white/15 text-white/90 text-[10px] sm:text-xs font-sans font-light shadow-apple-sm text-center">
+          <span>7/24 Sıcak Mutfak</span>
+          <span className="w-1 h-1 rounded-full bg-white/40 shrink-0" />
+          <span>Ücretsiz Oyun Salonu</span>
+          <span className="w-1 h-1 rounded-full bg-white/40 shrink-0" />
+          <span>Açık Balkon Terası</span>
+        </div>
+      </motion.div>
 
       {/* Minimal Bouncing Scroll Down Arrow */}
       <motion.div
