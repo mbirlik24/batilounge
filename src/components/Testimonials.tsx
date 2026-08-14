@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Star, ExternalLink, MessageSquare, Filter, MapPin, Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import TypewriterHeading from '@/components/TypewriterHeading';
+import { toast } from 'sonner';
 
 interface Review {
   id: string;
@@ -102,6 +103,7 @@ export default function Testimonials() {
   const [data, setData] = useState<ReviewsApiResponse | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeFilter, setActiveFilter] = useState<string>('Tümü');
+  const [hoverRating, setHoverRating] = useState<number>(0);
   
   // Lightbox Modal state
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -425,19 +427,40 @@ export default function Testimonials() {
               </motion.div>
             )}
 
-            {/* Master Card Bottom Bar CTA */}
-            <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-zinc-200/80 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-zinc-500 dark:text-zinc-400 text-center sm:text-left">
-              <span>Google Haritalar Canlı Verileri ({placeName})</span>
-              <a
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white font-sans font-medium hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 transition-all inline-flex items-center justify-center gap-2 shadow-apple-sm hover:scale-[1.01] active:scale-[0.99]"
-              >
-                <MessageSquare className="w-3.5 h-3.5 text-blue-600" />
-                <span>Google Haritalar'da Yeni Yorum Bırakın</span>
-                <ExternalLink className="w-3 h-3 text-zinc-400" />
-              </a>
+            {/* Interactive "Bizi Değerlendirin" 5-Star Rating CTA Widget */}
+            <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-zinc-200/80 dark:border-zinc-800 flex flex-col items-center justify-center text-center">
+              <h4 className="text-sm sm:text-base font-heading font-semibold text-zinc-950 dark:text-white mb-1">
+                Bizi Değerlendirin
+              </h4>
+              <p className="text-xs font-sans text-zinc-500 dark:text-zinc-400 mb-3 font-light">
+                Deneyiminizi Google Haritalar'da paylaşmak için yıldızlara tıklayın
+              </p>
+
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    onClick={() => {
+                      toast.success(`${star} Yıldız verdiğiniz için teşekkürler! Google Haritalar'a yönlendiriliyorsunuz...`);
+                      setTimeout(() => {
+                        window.open(googleMapsUrl, '_blank');
+                      }, 450);
+                    }}
+                    onMouseEnter={() => setHoverRating(star)}
+                    onMouseLeave={() => setHoverRating(0)}
+                    className="p-1.5 rounded-full transition-transform duration-150 hover:scale-125 focus:outline-none"
+                    aria-label={`${star} Yıldız Ver`}
+                  >
+                    <Star
+                      className={`w-7 h-7 sm:w-8 sm:h-8 transition-colors duration-150 ${
+                        star <= hoverRating
+                          ? 'fill-amber-500 text-amber-500'
+                          : 'text-zinc-300 dark:text-zinc-700 hover:text-amber-400'
+                      }`}
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
 
           </div>
