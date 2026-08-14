@@ -225,32 +225,37 @@ export default function Testimonials() {
               </motion.div>
 
               <div>
-                <h3 className="text-xl sm:text-3xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight mb-0.5">
-                  {placeName}
-                </h3>
-                <p className="text-xs font-sans text-zinc-500 dark:text-zinc-400 font-light flex items-center gap-1">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <h3 className="text-xl sm:text-3xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight">
+                    {placeName}
+                  </h3>
+
+                  {/* Compact Round/Pill 5.0 Google Badge RIGHT NEXT TO Title */}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 shadow-sm"
+                  >
+                    <GoogleLogoIcon className="w-3.5 h-3.5" />
+                    <span className="text-xs font-heading font-bold leading-none">{overallRating.toFixed(1)}</span>
+                    <div className="flex items-center gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
+                      ))}
+                    </div>
+                    <span className="text-[10px] font-sans text-zinc-500 dark:text-zinc-400 font-medium">({totalCount})</span>
+                  </motion.div>
+                </div>
+
+                {/* Full Address Subtext */}
+                <p className="text-xs font-sans text-zinc-500 dark:text-zinc-400 font-light flex items-center gap-1 mt-1">
                   <MapPin className="w-3 h-3 text-amber-500 shrink-0" />
-                  <span>Zekeriyaköy, Sarıyer / İstanbul</span>
+                  <span>{formattedAddress}</span>
                 </p>
               </div>
             </div>
 
-            {/* Right: Minimal 5-Star Rating Badge & Blue Link */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 shrink-0 pt-2 sm:pt-0">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 shadow-sm"
-              >
-                <GoogleLogoIcon className="w-4 h-4" />
-                <span className="text-xs sm:text-sm font-heading font-semibold leading-none">{overallRating.toFixed(1)}</span>
-                <div className="flex items-center gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-amber-500 text-amber-500" />
-                  ))}
-                </div>
-                <span className="text-[10px] font-sans text-zinc-500 dark:text-zinc-400 font-medium">({totalCount})</span>
-              </motion.div>
-
+            {/* Right: Blue Link */}
+            <div className="flex items-center gap-3 shrink-0 pt-1 sm:pt-0">
               <a
                 href={googleMapsUrl}
                 target="_blank"
