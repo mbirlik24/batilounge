@@ -40,9 +40,12 @@ export default function InstagramFeed() {
           </a>
         </div>
 
-        {/* Official Elfsight Instagram Feed Container */}
-        <div className="rounded-3xl overflow-hidden border border-zinc-200/80 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-2 sm:p-4 shadow-apple-sm min-h-[300px]">
-          <div className="elfsight-app-08ec1551-e48b-4c45-9287-ca831c5c4c0e" data-elfsight-app-lazy></div>
+        {/* Official Elfsight Instagram Feed Container (100% Mobile Responsive) */}
+        <div className="w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 p-1 sm:p-4 shadow-apple-sm min-h-[250px] sm:min-h-[340px]">
+          <div
+            className="elfsight-app-08ec1551-e48b-4c45-9287-ca831c5c4c0e max-w-full overflow-x-hidden"
+            data-elfsight-app-lazy
+          />
         </div>
       </div>
     </section>
