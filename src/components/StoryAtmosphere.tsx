@@ -87,9 +87,9 @@ export default function StoryAtmosphere() {
         {/* Master Birleşik Sade, Şık & Kompakt Hikaye Kartı */}
         <div className="rounded-2xl sm:rounded-3xl border border-black/[0.08] dark:border-zinc-800 bg-white dark:bg-zinc-900/90 shadow-xl sm:shadow-2xl overflow-hidden backdrop-blur-xl">
           
-          {/* Top Segmented Controls (Compact) */}
+          {/* Top Segmented Controls (Single Horizontal Row on Mobile) */}
           <div className="p-2.5 sm:p-3.5 bg-zinc-50/80 dark:bg-zinc-950/60 border-b border-black/[0.06] dark:border-zinc-800">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2.5">
+            <div className="flex overflow-x-auto scrollbar-none gap-2 sm:gap-2.5 pb-1 sm:pb-0 whitespace-nowrap">
               {cycles.map((item, idx) => {
                 const isActive = activeCycle === idx;
 
@@ -97,13 +97,13 @@ export default function StoryAtmosphere() {
                   <button
                     key={item.id}
                     onClick={() => setActiveCycle(idx)}
-                    className={`py-2 sm:py-2.5 px-3 sm:px-4 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-heading font-medium transition-all duration-200 text-center ${
+                    className={`py-2 sm:py-2.5 px-4 sm:px-5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-heading font-medium transition-all duration-200 shrink-0 whitespace-nowrap ${
                       isActive
                         ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 shadow-apple-sm scale-[1.01]'
                         : 'bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-black/[0.05] dark:border-zinc-800'
                     }`}
                   >
-                    <span className="truncate block">{item.tabLabel}</span>
+                    <span>{item.tabLabel}</span>
                   </button>
                 );
               })}
