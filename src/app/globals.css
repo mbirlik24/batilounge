@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@300;400;500;600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --ease-apple: cubic-bezier(0.23, 1, 0.32, 1);
+  --font-geist: 'Geist', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+  --font-poppins: 'Poppins', -apple-system, 'SF Pro Text', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 4.5rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Apple Pure White Base */
+body {
+  font-family: var(--font-poppins);
+  background-color: #FFFFFF;
+  color: #1D1D1F;
+  transition: background-color 200ms var(--ease-apple), color 200ms var(--ease-apple);
+}
+
+.dark body {
+  background-color: #000000;
+  color: #F5F5F7;
+}
+
+/* Apple Display Typography (Tight Negative Tracking) */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-geist);
+  letter-spacing: -0.03em;
+}
+
+/* Apple Physical Tactile Response */
+button, a.apple-btn, .apple-press {
+  transition: transform 120ms var(--ease-apple), opacity 150ms var(--ease-apple), background-color 150ms var(--ease-apple);
+  user-select: none;
+}
+
+button:active, a.apple-btn:active, .apple-press:active {
+  transform: scale(0.975);
+}
+
+/* Apple Pure White Nav / Glass Chrome */
+.apple-glass-nav {
+  background: #FFFFFF;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.dark .apple-glass-nav {
+  background: #000000;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Apple Segmented Control Container */
+.apple-segment-track {
+  background: #EEEEF0;
+  padding: 4px;
+  border-radius: 9999px;
+}
+
+.dark .apple-segment-track {
+  background: #1C1C1E;
+}
+
+/* Minimal Subtle Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1D1D6;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #AEAEB2;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #3A3A3C;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

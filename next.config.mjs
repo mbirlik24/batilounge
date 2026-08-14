@@ -1,0 +1,7 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ['lucide-react', 'framer-motion', 'sonner'],
+};
+
+export default nextConfig;
