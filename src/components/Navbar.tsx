@@ -111,53 +111,76 @@ export default function Navbar({ onOpenReservation }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Drawer (Always Dark when at top of page over Hero Video) */}
+      {/* Mobile Drawer (Apple-Style Staggered Motion & Glass Entrance) */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            className={`md:hidden border-b backdrop-blur-2xl px-6 py-5 shadow-2xl transition-colors duration-200 ${
+            transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+            className={`md:hidden border-b backdrop-blur-3xl px-6 py-6 shadow-2xl overflow-hidden transition-colors duration-300 ${
               !scrolled
                 ? 'bg-zinc-950/95 border-zinc-800 text-white'
-                : 'bg-white dark:bg-zinc-950 border-black/[0.08] dark:border-white/[0.12] text-[#1D1D1F] dark:text-[#F5F5F7]'
+                : 'bg-white/95 dark:bg-zinc-950/95 border-black/[0.08] dark:border-white/[0.12] text-[#1D1D1F] dark:text-[#F5F5F7]'
             }`}
           >
-            <div className="flex flex-col gap-3">
-              <span className={`text-[11px] font-sans font-light ${!scrolled ? 'text-zinc-400' : 'text-zinc-500 dark:text-zinc-400'}`}>
+            <div className="flex flex-col gap-3.5">
+              <motion.span
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, delay: 0.04 }}
+                className={`text-[10px] font-sans font-medium uppercase tracking-wider ${
+                  !scrolled ? 'text-zinc-400' : 'text-zinc-500 dark:text-zinc-400'
+                }`}
+              >
                 7/24 Kesintisiz Hizmet
-              </span>
+              </motion.span>
 
-              {links.map((link) => (
-                <a
+              {links.map((link, idx) => (
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`font-heading text-sm font-medium py-1 transition-colors ${
-                    !scrolled ? 'text-white hover:text-zinc-300' : 'text-[#1D1D1F] dark:text-[#F5F5F7]'
-                  }`}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.06 + idx * 0.04, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  {link.label}
-                </a>
+                  <a
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`font-heading text-base font-medium py-1.5 flex items-center justify-between group transition-colors ${
+                      !scrolled
+                        ? 'text-white hover:text-amber-400'
+                        : 'text-[#1D1D1F] dark:text-[#F5F5F7] hover:text-amber-600 dark:hover:text-amber-400'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-xs">→</span>
+                  </a>
+                </motion.div>
               ))}
 
-              <div className={`pt-3 border-t ${!scrolled ? 'border-zinc-800' : 'border-black/[0.06] dark:border-white/[0.08]'}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.35 }}
+                className={`pt-4 mt-1 border-t ${
+                  !scrolled ? 'border-zinc-800' : 'border-black/[0.06] dark:border-white/[0.08]'
+                }`}
+              >
                 <button
                   onClick={() => {
                     setMobileOpen(false);
                     onOpenReservation();
                   }}
-                  className={`w-full py-2.5 rounded-full font-heading font-medium text-xs tracking-tight transition-all ${
+                  className={`w-full py-3 rounded-full font-heading font-medium text-xs tracking-tight shadow-apple-md transition-all active:scale-[0.98] ${
                     !scrolled
-                      ? 'bg-white text-zinc-950 hover:bg-zinc-100 shadow-md'
+                      ? 'bg-white text-zinc-950 hover:bg-zinc-100'
                       : 'bg-[#1D1D1F] dark:bg-white text-white dark:text-[#1D1D1F]'
                   }`}
                 >
                   Masa Ayırt
                 </button>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         )}
