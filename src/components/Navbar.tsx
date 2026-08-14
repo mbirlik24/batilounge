@@ -111,7 +111,7 @@ export default function Navbar({ onOpenReservation }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer (Always Dark when at top of page over Hero Video) */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -119,10 +119,14 @@ export default function Navbar({ onOpenReservation }: NavbarProps) {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            className="md:hidden border-b border-black/[0.08] dark:border-white/[0.12] bg-white dark:bg-zinc-950 backdrop-blur-xl px-6 py-5 shadow-apple-md"
+            className={`md:hidden border-b backdrop-blur-2xl px-6 py-5 shadow-2xl transition-colors duration-200 ${
+              !scrolled
+                ? 'bg-zinc-950/95 border-zinc-800 text-white'
+                : 'bg-white dark:bg-zinc-950 border-black/[0.08] dark:border-white/[0.12] text-[#1D1D1F] dark:text-[#F5F5F7]'
+            }`}
           >
             <div className="flex flex-col gap-3">
-              <span className="text-[11px] font-sans text-zinc-500 dark:text-zinc-400 font-light">
+              <span className={`text-[11px] font-sans font-light ${!scrolled ? 'text-zinc-400' : 'text-zinc-500 dark:text-zinc-400'}`}>
                 7/24 Kesintisiz Hizmet
               </span>
 
@@ -131,19 +135,25 @@ export default function Navbar({ onOpenReservation }: NavbarProps) {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="font-heading text-sm font-medium text-[#1D1D1F] dark:text-[#F5F5F7] py-1"
+                  className={`font-heading text-sm font-medium py-1 transition-colors ${
+                    !scrolled ? 'text-white hover:text-zinc-300' : 'text-[#1D1D1F] dark:text-[#F5F5F7]'
+                  }`}
                 >
                   {link.label}
                 </a>
               ))}
 
-              <div className="pt-3 border-t border-black/[0.06] dark:border-white/[0.08]">
+              <div className={`pt-3 border-t ${!scrolled ? 'border-zinc-800' : 'border-black/[0.06] dark:border-white/[0.08]'}`}>
                 <button
                   onClick={() => {
                     setMobileOpen(false);
                     onOpenReservation();
                   }}
-                  className="w-full py-2.5 rounded-full bg-[#1D1D1F] dark:bg-white text-white dark:text-[#1D1D1F] font-heading font-medium text-xs tracking-tight"
+                  className={`w-full py-2.5 rounded-full font-heading font-medium text-xs tracking-tight transition-all ${
+                    !scrolled
+                      ? 'bg-white text-zinc-950 hover:bg-zinc-100 shadow-md'
+                      : 'bg-[#1D1D1F] dark:bg-white text-white dark:text-[#1D1D1F]'
+                  }`}
                 >
                   Masa Ayırt
                 </button>
