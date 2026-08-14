@@ -44,8 +44,8 @@ export default function Hero({ onOpenReservation }: HeroProps) {
   };
 
   return (
-    <section className="snap-section relative h-screen min-h-[100dvh] w-full flex flex-col justify-between pt-24 pb-6 overflow-hidden bg-[#0A0A0C]">
-      {/* Background Video Layer (Fills 100% of Viewport, Zero White Bar) */}
+    <section className="snap-section relative min-h-[88vh] lg:h-screen lg:min-h-[100dvh] w-full flex flex-col justify-between pt-20 sm:pt-24 pb-4 sm:pb-6 overflow-hidden bg-[#0A0A0C]">
+      {/* Background Video Layer */}
       <div className="absolute inset-0 z-0 bg-[#0A0A0C] overflow-hidden">
         <video
           ref={videoRef}
@@ -74,7 +74,7 @@ export default function Hero({ onOpenReservation }: HeroProps) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.08, ease: [0.23, 1, 0.32, 1] }}
-            className="text-4xl sm:text-6xl md:text-7xl font-heading font-light sm:font-normal tracking-[-0.035em] text-white leading-[1.08] mb-4 sm:mb-5 drop-shadow-lg"
+            className="text-4xl sm:text-6xl md:text-7xl font-heading font-light sm:font-normal tracking-[-0.035em] text-white leading-[1.08] mb-3.5 sm:mb-5 drop-shadow-lg"
           >
             Batı’ya <br />
             geçelim mi?

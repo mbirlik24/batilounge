@@ -13,16 +13,35 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
   scroll-padding-top: 4.5rem;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.snap-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+/* Scroll Snap System: ONLY enabled on desktop screens in soft proximity mode */
+@media (min-width: 1024px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+
+  .snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+}
+
+/* Mobile & Tablet: 100% Fluid Natural Touch Scrolling (Zero Scroll Locking) */
+@media (max-width: 1023px) {
+  html {
+    scroll-snap-type: none !important;
+    scroll-padding-top: 4rem;
+  }
+
+  .snap-section {
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+  }
 }
 
 /* Apple Pure White Base */
