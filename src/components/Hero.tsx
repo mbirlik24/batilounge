@@ -119,19 +119,7 @@ export default function Hero({ onOpenReservation }: HeroProps) {
         </div>
       </div>
 
-      {/* Sleek Single-Row Glass Pill Bar (Extra Small Punto, Zero Dots) */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.35, ease: [0.23, 1, 0.32, 1] }}
-        className="relative z-10 w-full flex justify-center px-4 mt-auto mb-2"
-      >
-        <div className="inline-flex items-center gap-3 sm:gap-5 px-3.5 sm:px-5 py-1 sm:py-1.5 rounded-full bg-white/10 dark:bg-black/40 backdrop-blur-md border border-white/15 text-white/75 text-[8px] sm:text-[9.5px] font-sans font-light tracking-wider uppercase shadow-apple-sm text-center">
-          <span>7/24 Sıcak Mutfak</span>
-          <span>Ücretsiz Oyun Salonu</span>
-          <span>Açık Balkon Terası</span>
-        </div>
-      </motion.div>
+
 
       {/* Minimal Bouncing Scroll Down Arrow */}
       <motion.div
