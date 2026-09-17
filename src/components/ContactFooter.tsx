@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { ArrowUpRight, MapPin, Phone, Mail, Instagram, Star } from 'lucide-react';
+import Image from 'next/image';
 
 export default function ContactFooter() {
   const scrollToTop = () => {
@@ -16,14 +17,18 @@ export default function ContactFooter() {
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img
+                <Image
                   src="/images/logo-dark.png"
-                  alt="Batı Lounge"
+                  alt="Batı Lounge Logo"
+                  width={150}
+                  height={36}
                   className="h-8 sm:h-9 w-auto object-contain dark:hidden"
                 />
-                <img
+                <Image
                   src="/images/logo-white.png"
-                  alt="Batı Lounge"
+                  alt="Batı Lounge Logo"
+                  width={150}
+                  height={36}
                   className="h-8 sm:h-9 w-auto object-contain hidden dark:block"
                 />
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-sans font-medium border border-amber-500/20">

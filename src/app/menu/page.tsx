@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, ArrowLeft, ArrowRight, BookOpen, Utensils, Clock, Flame, ChevronRight } from 'lucide-react';
 import { MENU_CATEGORIES, MENU_ITEMS, MenuItem } from '@/data/menuData';
@@ -52,14 +53,18 @@ export default function MenuPage() {
           </Link>
 
           <Link href="/" className="flex items-center">
-            <img
+            <Image
               src="/images/logo-dark.png"
-              alt="Batı Lounge"
+              alt="Batı Lounge Logo"
+              width={140}
+              height={28}
               className="h-6 sm:h-7 w-auto object-contain dark:hidden"
             />
-            <img
+            <Image
               src="/images/logo-white.png"
-              alt="Batı Lounge"
+              alt="Batı Lounge Logo"
+              width={140}
+              height={28}
               className="h-6 sm:h-7 w-auto object-contain hidden dark:block"
             />
           </Link>
@@ -141,11 +146,12 @@ export default function MenuPage() {
                   onClick={() => setLightboxImage(item.image || null)}
                   className="group relative rounded-xl overflow-hidden border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-zinc-900 aspect-square cursor-pointer shadow-apple-sm"
                 >
-                  <img
-                    src={item.image}
+                  <Image
+                    src={item.image!}
                     alt={item.name}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-2.5 flex flex-col justify-end text-white">
                     <p className="text-[11px] font-heading font-medium line-clamp-1">{item.name}</p>
@@ -245,11 +251,12 @@ export default function MenuPage() {
                     {/* Item Image */}
                     {item.image && (
                       <div className="relative h-44 w-full bg-zinc-100 dark:bg-zinc-950 overflow-hidden">
-                        <img
+                        <Image
                           src={item.image}
                           alt={item.name}
-                          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                          loading="lazy"
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                         />
                         {item.tag && (
                           <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-sans font-medium bg-black/60 backdrop-blur-md text-white border border-white/10">
@@ -327,10 +334,12 @@ export default function MenuPage() {
 
               {selectedItem.image && (
                 <div className="h-56 w-full bg-zinc-100 dark:bg-zinc-950 relative">
-                  <img
+                  <Image
                     src={selectedItem.image}
                     alt={selectedItem.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 640px) 100vw, 512px"
+                    className="object-cover"
                   />
                   {selectedItem.tag && (
                     <span className="absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-sans font-medium bg-black/70 backdrop-blur-md text-white">
@@ -397,18 +406,20 @@ export default function MenuPage() {
               onClick={() => setLightboxImage(null)}
               className="absolute inset-0 bg-black/90 backdrop-blur-md"
             />
-            <div className="relative z-10 max-w-3xl max-h-[85vh] rounded-2xl overflow-hidden border border-white/20">
+            <div className="relative z-10 w-full max-w-3xl h-[80vh] rounded-2xl overflow-hidden border border-white/20 bg-black flex items-center justify-center p-2">
               <button
                 onClick={() => setLightboxImage(null)}
                 aria-label="Kapat"
-                className="absolute top-4 right-4 p-2 rounded-full bg-black/60 text-white hover:bg-black"
+                className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/60 text-white hover:bg-black"
               >
                 <X className="w-5 h-5" />
               </button>
-              <img
+              <Image
                 src={lightboxImage}
                 alt="Menü Lezzeti"
-                className="max-h-[80vh] w-auto object-contain bg-black"
+                fill
+                sizes="(max-width: 768px) 95vw, 800px"
+                className="object-contain p-2"
               />
             </div>
           </div>

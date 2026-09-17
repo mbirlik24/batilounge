@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, MessageSquare } from 'lucide-react';
 import { toast } from 'sonner';
@@ -30,6 +30,16 @@ export default function ReservationModal({
     'ic-salon': 'Ana İç Salon',
     nargile: 'Nargile & Kafe Alanı',
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,6 +76,9 @@ export default function ReservationModal({
           />
 
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="reservation-modal-title"
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.97 }}
@@ -82,7 +95,7 @@ export default function ReservationModal({
 
             <div>
               <div className="mb-5">
-                <h3 className="text-xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight">
+                <h3 id="reservation-modal-title" className="text-xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight">
                   WhatsApp ile Masa Rezervasyonu
                 </h3>
                 <p className="text-xs font-sans font-light text-zinc-500 mt-1">

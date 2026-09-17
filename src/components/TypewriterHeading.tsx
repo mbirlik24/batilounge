@@ -45,14 +45,6 @@ export default function TypewriterHeading({
     }
   }, [isInView]);
 
-  // Additional mount fallback to ensure immediate start on page load
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setStarted(true);
-    }, 50);
-    return () => clearTimeout(timer);
-  }, []);
-
   useEffect(() => {
     if (!started) return;
 

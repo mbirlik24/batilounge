@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ExternalLink, MessageSquare, Filter, MapPin, Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 import TypewriterHeading from '@/components/TypewriterHeading';
 import { toast } from 'sonner';
 
@@ -163,28 +164,9 @@ export default function Testimonials() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start 80%', 'end 20%'],
-  });
-
-  // Directly sync vertical page scroll to horizontal review slider scroll position
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on('change', (progress) => {
-      const slider = sliderRef.current;
-      if (slider && window.innerWidth < 768) {
-        const maxScroll = slider.scrollWidth - slider.clientWidth;
-        if (maxScroll > 0) {
-          slider.scrollLeft = Math.min(maxScroll, progress * maxScroll * 1.3);
-        }
-      }
-    });
-
-    return () => unsubscribe();
-  }, [scrollYProgress]);
-
   return (
-    <section ref={sectionRef} id="google-reviews" className="snap-section py-10 sm:py-20 bg-zinc-50 dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
+    <section ref={sectionRef} id="yorumlar" className="snap-section py-10 sm:py-20 bg-zinc-50 dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
+      <span id="google-reviews" className="sr-only" aria-hidden="true" />
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[300px] sm:h-[400px] bg-amber-500/5 dark:bg-amber-500/10 blur-[120px] pointer-events-none rounded-full" />
 
@@ -218,9 +200,11 @@ export default function Testimonials() {
                 whileHover={{ scale: 1.05 }}
                 className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-zinc-950 dark:bg-black border border-zinc-800 dark:border-zinc-700 flex items-center justify-center p-2 sm:p-2.5 shadow-md shrink-0"
               >
-                <img
+                <Image
                   src="/images/logo-white.png"
                   alt="Batı Lounge Logo"
+                  width={48}
+                  height={48}
                   className="w-full h-full object-contain"
                 />
               </motion.div>

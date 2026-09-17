@@ -133,9 +133,9 @@ export async function GET() {
         verified: true,
       }));
 
-    // Construct live photos using Google Places photo endpoint
+    // Construct live photos using secure server-side proxy endpoint
     const fetchedPhotos: GooglePhoto[] = (result.photos || []).slice(0, 4).map((p: any) => ({
-      url: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=${p.photo_reference}&key=${apiKey}`,
+      url: `/api/places-photo?ref=${encodeURIComponent(p.photo_reference)}&maxwidth=800`,
       width: p.width || 800,
       height: p.height || 600,
     }));

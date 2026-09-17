@@ -52,6 +52,7 @@ export default function Hero({ onOpenReservation }: HeroProps) {
         <video
           ref={videoRef}
           src="/videos/hero.mp4"
+          poster="/images/hero.jpg"
           autoPlay
           loop
           muted

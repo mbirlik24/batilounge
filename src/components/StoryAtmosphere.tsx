@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import TypewriterHeading from '@/components/TypewriterHeading';
 
 export default function StoryAtmosphere() {
@@ -171,10 +172,12 @@ export default function StoryAtmosphere() {
                 {/* Right Side Compact Image */}
                 <div className="lg:col-span-5">
                   <div className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[16/11] max-h-[260px] sm:max-h-[300px] bg-zinc-100 dark:bg-zinc-950 border border-black/[0.08] dark:border-zinc-800 shadow-md">
-                    <img
+                    <Image
                       src={currentTab.image}
                       alt={currentTab.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                     <div className="absolute bottom-3 left-3 right-3 text-white">

@@ -1,9 +1,19 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
+import { Poppins } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { ClientToaster } from '@/components/ClientToaster';
 import JsonLd from '@/components/JsonLd';
 import { Analytics } from '@vercel/analytics/next';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-poppins',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://batilounge.com'),
@@ -79,14 +89,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" suppressHydrationWarning className="dark">
+    <html
+      lang="tr"
+      suppressHydrationWarning
+      className={`dark ${GeistSans.variable} ${GeistMono.variable} ${poppins.variable}`}
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@300;400;500;600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
         {/* Preload Critical Hero Assets for Instant Clean Page Load */}
         <link rel="preload" as="image" href="/images/hero.jpg" />
         <link rel="preload" as="image" href="/images/logo-white.png" />

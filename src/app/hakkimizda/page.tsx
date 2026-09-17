@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowLeft, MessageSquare } from 'lucide-react';
 import TypewriterHeading from '@/components/TypewriterHeading';
@@ -44,24 +45,36 @@ export default function HakkimizdaPage() {
           </Link>
 
           <Link href="/" className="flex items-center">
-            <img
+            <Image
               src="/images/logo-dark.png"
-              alt="Batı Lounge"
+              alt="Batı Lounge Logo"
+              width={140}
+              height={28}
               className="h-6 sm:h-7 w-auto object-contain dark:hidden"
             />
-            <img
+            <Image
               src="/images/logo-white.png"
-              alt="Batı Lounge"
+              alt="Batı Lounge Logo"
+              width={140}
+              height={28}
               className="h-6 sm:h-7 w-auto object-contain hidden dark:block"
             />
           </Link>
 
-          <Link
-            href="/menu"
-            className="apple-btn px-4 sm:px-5 py-2 rounded-full bg-[#1D1D1F] hover:bg-black dark:bg-white dark:hover:bg-zinc-100 text-white dark:text-[#1D1D1F] font-heading font-medium text-xs tracking-tight shadow-sm"
-          >
-            Menüyü Gör
-          </Link>
+          <div className="flex items-center gap-2.5">
+            <Link
+              href="/menu"
+              className="px-3.5 py-1.5 rounded-full border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-[#F5F5F7] font-heading font-medium text-xs tracking-tight hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors"
+            >
+              Menü
+            </Link>
+            <button
+              onClick={() => setIsReservationOpen(true)}
+              className="apple-btn px-4 sm:px-5 py-2 rounded-full bg-[#1D1D1F] hover:bg-black dark:bg-white dark:hover:bg-zinc-100 text-white dark:text-[#1D1D1F] font-heading font-medium text-xs tracking-tight shadow-sm"
+            >
+              Masa Ayırt
+            </button>
+          </div>
         </div>
       </header>
 
@@ -88,11 +101,13 @@ export default function HakkimizdaPage() {
         {/* 2-Column Master Story Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-16 sm:mb-24">
           <div className="lg:col-span-6">
-            <div className="rounded-3xl overflow-hidden border border-black/[0.08] dark:border-zinc-800 shadow-2xl aspect-[4/3] bg-zinc-100 dark:bg-zinc-900">
-              <img
+            <div className="relative rounded-3xl overflow-hidden border border-black/[0.08] dark:border-zinc-800 shadow-2xl aspect-[4/3] bg-zinc-100 dark:bg-zinc-900">
+              <Image
                 src="/images/hero.jpg"
-                alt="Batı Lounge Ana Salon"
-                className="w-full h-full object-cover"
+                alt="Batı Lounge Ana Salon ve Teras"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
               />
             </div>
           </div>
@@ -181,8 +196,14 @@ export default function HakkimizdaPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {['/images/hero.jpg', '/images/vip.jpg', '/images/terrace.jpg', '/images/mixology.jpg'].map((img, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden aspect-[4/3] bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800">
-                <img src={img} alt="Batı Lounge Görsel" className="w-full h-full object-cover" />
+              <div key={i} className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800">
+                <Image
+                  src={img}
+                  alt={`Batı Lounge Mekan Fotoğrafı ${i + 1}`}
+                  fill
+                  sizes="(max-width: 640px) 50vw, 25vw"
+                  className="object-cover"
+                />
               </div>
             ))}
           </div>

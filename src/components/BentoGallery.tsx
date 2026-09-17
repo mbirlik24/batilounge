@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import Image from 'next/image';
 import TypewriterHeading from '@/components/TypewriterHeading';
 
 interface GalleryItem {
@@ -115,10 +116,12 @@ export default function BentoGallery() {
               onClick={() => setLightboxIndex(index)}
               className={`group relative rounded-xl sm:rounded-apple-lg overflow-hidden border border-black/[0.08] dark:border-white/[0.12] bg-white dark:bg-zinc-900 shadow-apple-sm cursor-pointer ${item.aspect}`}
             >
-              <img
+              <Image
                 src={item.src}
                 alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-500 ease-apple-ease group-hover:scale-105"
+                fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="object-cover transition-transform duration-500 ease-apple-ease group-hover:scale-105"
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300" />
@@ -193,11 +196,13 @@ export default function BentoGallery() {
                 <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
-              <div className="h-[65vh] w-full bg-black flex items-center justify-center p-2">
-                <img
+              <div className="relative h-[65vh] w-full bg-black flex items-center justify-center p-2">
+                <Image
                   src={GALLERY_ITEMS[lightboxIndex].src}
                   alt={GALLERY_ITEMS[lightboxIndex].title}
-                  className="max-h-full max-w-full object-contain rounded-xl"
+                  fill
+                  sizes="(max-width: 768px) 95vw, 80vw"
+                  className="object-contain rounded-xl p-2"
                 />
               </div>
 

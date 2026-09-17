@@ -5,6 +5,7 @@ import { useTheme } from '@/components/ThemeProvider';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface NavbarProps {
   onOpenReservation: () => void;
@@ -47,9 +48,12 @@ export default function Navbar({ onOpenReservation }: NavbarProps) {
 
         {/* Logo */}
         <Link href="/" prefetch={true} className="flex items-center group">
-          <img
+          <Image
             src={scrolled && resolvedTheme !== 'dark' ? '/images/logo-dark.png' : '/images/logo-white.png'}
-            alt="Batı Lounge"
+            alt="Batı Lounge Logo"
+            width={140}
+            height={28}
+            priority
             className="h-6 sm:h-7 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
           />
         </Link>
