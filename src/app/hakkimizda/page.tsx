@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowLeft, MessageSquare } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import TypewriterHeading from '@/components/TypewriterHeading';
 import ContactFooter from '@/components/ContactFooter';
 import ReservationModal from '@/components/ReservationModal';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 
 export default function HakkimizdaPage() {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
@@ -134,9 +135,9 @@ export default function HakkimizdaPage() {
                 href="https://wa.me/905418284342"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-700 text-xs font-sans font-medium text-zinc-800 dark:text-zinc-200 inline-flex items-center gap-2"
+                className="px-6 py-3 rounded-full border border-[#25D366]/40 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-xs font-sans font-medium text-[#25D366] inline-flex items-center gap-2 transition-colors shadow-sm"
               >
-                <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />
+                <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" />
                 <span>WhatsApp İletişim</span>
               </a>
             </div>

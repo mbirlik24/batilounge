@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MessageSquare } from 'lucide-react';
+import { X } from 'lucide-react';
 import { toast } from 'sonner';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 
 interface ReservationModalProps {
   isOpen: boolean;
@@ -95,8 +96,9 @@ export default function ReservationModal({
 
             <div>
               <div className="mb-5">
-                <h3 id="reservation-modal-title" className="text-xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight">
-                  WhatsApp ile Masa Rezervasyonu
+                <h3 id="reservation-modal-title" className="text-xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight flex items-center gap-2">
+                  <WhatsAppIcon className="w-5 h-5 text-[#25D366] shrink-0" />
+                  <span>WhatsApp ile Masa Rezervasyonu</span>
                 </h3>
                 <p className="text-xs font-sans font-light text-zinc-500 mt-1">
                   Batı Lounge Zekeriyaköy • Masa ücreti alınmaz
@@ -228,9 +230,9 @@ export default function ReservationModal({
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white font-heading font-medium text-xs tracking-tight shadow-md transition-all flex items-center justify-center gap-2"
+                    className="w-full py-3 px-5 rounded-xl bg-[#25D366] hover:bg-[#20BD5A] active:scale-[0.99] text-white font-heading font-medium text-xs tracking-tight shadow-md shadow-[#25D366]/20 transition-all flex items-center justify-center gap-2"
                   >
-                    <MessageSquare className="w-4 h-4 fill-white text-emerald-600" />
+                    <WhatsAppIcon className="w-4 h-4 fill-white text-white shrink-0" />
                     <span>WhatsApp ile Masanızı Ayırtın</span>
                   </button>
                 </div>

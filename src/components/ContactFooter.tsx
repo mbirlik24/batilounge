@@ -3,6 +3,7 @@
 import React from 'react';
 import { ArrowUpRight, MapPin, Phone, Mail, Instagram, Star } from 'lucide-react';
 import Image from 'next/image';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 
 export default function ContactFooter() {
   const scrollToTop = () => {
@@ -63,8 +64,9 @@ export default function ContactFooter() {
                 href="https://wa.me/905418284342"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline flex items-center gap-1.5 font-medium"
+                className="hover:underline flex items-center gap-1.5 font-medium text-[#25D366] hover:text-[#20BD5A] transition-colors"
               >
+                <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" />
                 <span>WhatsApp Rezervasyon</span>
                 <ArrowUpRight className="w-3 h-3" />
               </a>

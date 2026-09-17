@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, Calendar, Clock, Users, MapPin, CheckCircle2 } from 'lucide-react';
+import { Calendar, Clock, Users, MapPin, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
 import TypewriterHeading from '@/components/TypewriterHeading';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 
 export default function ReservationSection() {
   const [formData, setFormData] = useState({
@@ -86,8 +87,9 @@ export default function ReservationSection() {
           {/* Right: Clean WhatsApp-Direct Reservation Form */}
           <div className="lg:col-span-7 rounded-3xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900/95 p-5 sm:p-8 shadow-2xl backdrop-blur-xl">
             <div className="mb-5 pb-3 border-b border-zinc-100 dark:border-zinc-800">
-              <h3 className="text-xl sm:text-2xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight">
-                WhatsApp Masa Rezervasyonu
+              <h3 className="text-xl sm:text-2xl font-heading font-semibold text-zinc-950 dark:text-white tracking-tight flex items-center gap-2.5">
+                <WhatsAppIcon className="w-6 h-6 text-[#25D366] shrink-0" />
+                <span>WhatsApp Masa Rezervasyonu</span>
               </h3>
               <p className="text-xs font-sans font-light text-zinc-500 mt-1">
                 Formu doldurun, tüm bilgileriniz hazır bir şekilde WhatsApp'a iletilsin.
@@ -215,9 +217,9 @@ export default function ReservationSection() {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white font-heading font-medium text-xs sm:text-sm tracking-tight shadow-lg transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3.5 px-6 rounded-2xl bg-[#25D366] hover:bg-[#20BD5A] active:scale-[0.99] text-white font-heading font-medium text-xs sm:text-sm tracking-tight shadow-lg shadow-[#25D366]/25 transition-all flex items-center justify-center gap-2.5"
                 >
-                  <MessageSquare className="w-4 h-4 fill-white text-emerald-600" />
+                  <WhatsAppIcon className="w-5 h-5 fill-white text-white shrink-0" />
                   <span>WhatsApp ile Masanızı Ayırtın (0541 828 43 42)</span>
                 </button>
               </div>
