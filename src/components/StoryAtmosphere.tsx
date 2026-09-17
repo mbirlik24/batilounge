@@ -20,7 +20,7 @@ export default function StoryAtmosphere() {
         'Özel Bitki Çayları & Taze Demlemeler',
         'Ferah Açık Balkon & Teras Keyfi',
       ],
-      image: '/images/terrace.jpg',
+      image: '/images/story-morning.jpg',
     },
     {
       id: 'afternoon',
@@ -33,7 +33,7 @@ export default function StoryAtmosphere() {
         'Taş Fırın Pizza & Burger Çeşitleri',
         'Taze İtalyan Kahveleri & Dondurma',
       ],
-      image: '/images/vip.jpg',
+      image: '/images/story-games.jpg',
     },
     {
       id: 'evening',
@@ -46,7 +46,7 @@ export default function StoryAtmosphere() {
         'Ev Yapımı Çikolatalı Sıcak Sufle',
         'Geniş Balkon & İç Salon Masaları',
       ],
-      image: '/images/steak.jpg',
+      image: '/images/story-steak.jpg',
     },
     {
       id: 'night',
@@ -59,7 +59,7 @@ export default function StoryAtmosphere() {
         'Premium İthal Nargile Harmanları',
         'Oyun & Sohbet İçin Kesintisiz Alan',
       ],
-      image: '/images/mixology.jpg',
+      image: '/images/story-night.jpg',
     },
   ];
 

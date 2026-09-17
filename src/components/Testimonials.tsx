@@ -105,21 +105,23 @@ function ReviewCard({
   idx,
   googleMapsUrl,
   className = '',
+  onCardClick,
 }: {
   review: Review;
   idx: number;
   googleMapsUrl: string;
   className?: string;
+  onCardClick?: (e: React.MouseEvent) => void;
 }) {
   return (
     <div
-      className={`p-4 sm:p-6 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col justify-between shadow-apple-sm relative group ${className}`}
+      className={`p-4 sm:p-6 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col justify-between shadow-apple-sm relative group select-none ${className}`}
     >
       <div>
         {/* Top Author Bar */}
         <div className="flex items-start justify-between gap-3 mb-2.5 sm:mb-4">
           <div className="flex items-center gap-2.5 sm:gap-3">
-            <div className="relative">
+            <div className="relative pointer-events-none">
               <ReviewAvatar
                 src={review.profilePhotoUrl}
                 name={review.authorName}
@@ -142,7 +144,7 @@ function ReviewCard({
         </div>
 
         {/* Stars */}
-        <div className="flex items-center gap-1 mb-2 sm:mb-3">
+        <div className="flex items-center gap-1 mb-2 sm:mb-3 pointer-events-none">
           {[...Array(review.rating)].map((_, i) => (
             <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-500 text-amber-500" />
           ))}
@@ -163,7 +165,8 @@ function ReviewCard({
           href={googleMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-zinc-900 dark:hover:text-white flex items-center gap-1 transition-colors"
+          onClick={onCardClick}
+          className="hover:text-zinc-900 dark:hover:text-white flex items-center gap-1 transition-colors pointer-events-auto"
         >
           <span>Haritalar</span>
           <ExternalLink className="w-2.5 h-2.5" />
@@ -295,28 +298,153 @@ export default function Testimonials() {
     return true;
   });
 
-  const baseReviews = useMemo(() => {
+  const stripReviews = useMemo(() => {
     if (filteredReviews.length === 0) return [];
     let list = [...filteredReviews];
-    while (list.length < 6) {
+    while (list.length < 24) {
       list = [...list, ...filteredReviews];
     }
     return list;
   }, [filteredReviews]);
 
-  const row1Reviews = useMemo(() => {
-    return [...baseReviews, ...baseReviews];
-  }, [baseReviews]);
-
-  const row2Reviews = useMemo(() => {
-    if (baseReviews.length === 0) return [];
-    const shift = Math.floor(baseReviews.length / 2);
-    const shifted = [...baseReviews.slice(shift), ...baseReviews.slice(0, shift)];
-    return [...shifted, ...shifted];
-  }, [baseReviews]);
+  const strip2Reviews = useMemo(() => {
+    if (stripReviews.length === 0) return [];
+    const offset = Math.floor((filteredReviews.length || 5) / 2) || 2;
+    return [...stripReviews.slice(offset), ...stripReviews.slice(0, offset)];
+  }, [stripReviews, filteredReviews.length]);
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const sliderRef = useRef<HTMLDivElement | null>(null);
+  const strip1Ref = useRef<HTMLDivElement>(null);
+  const strip2Ref = useRef<HTMLDivElement>(null);
+  const cardSampleRef = useRef<HTMLDivElement>(null);
+
+  const targetOffset = useRef(0);
+  const currentOffset = useRef(0);
+  const isDragging = useRef(false);
+  const lastClientX = useRef(0);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+  const isHorizontalSwipe = useRef<boolean | null>(null);
+  const dragDistance = useRef(0);
+  const [isGrabbing, setIsGrabbing] = useState(false);
+
+  useEffect(() => {
+    let animId: number;
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      const currentScrollY = window.scrollY;
+      const deltaY = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+
+      // Slow and gentle scroll movement ("daha yavaş olsun")
+      if (inView && !isDragging.current) {
+        targetOffset.current += deltaY * 0.28;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    const updateLoop = () => {
+      const diff = targetOffset.current - currentOffset.current;
+      if (Math.abs(diff) > 0.02) {
+        currentOffset.current += diff * 0.08;
+      }
+
+      // Calculate cycle width dynamically from actual rendered card size
+      const cardWidth = cardSampleRef.current ? cardSampleRef.current.offsetWidth + 16 : 320;
+      const baseCount = filteredReviews.length || 5;
+      const multiplier = Math.max(1, Math.ceil(4 / baseCount));
+      const cycleWidth = baseCount * multiplier * cardWidth;
+
+      const curr = currentOffset.current;
+      const x1 = -(((curr % cycleWidth) + cycleWidth) % cycleWidth);
+      const x2 = -((((-curr + cycleWidth / 2) % cycleWidth) + cycleWidth) % cycleWidth);
+
+      if (strip1Ref.current) {
+        strip1Ref.current.style.transform = `translate3d(${x1}px, 0, 0)`;
+      }
+      if (strip2Ref.current) {
+        strip2Ref.current.style.transform = `translate3d(${x2}px, 0, 0)`;
+      }
+
+      animId = requestAnimationFrame(updateLoop);
+    };
+
+    animId = requestAnimationFrame(updateLoop);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(animId);
+    };
+  }, [filteredReviews.length]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = true;
+    setIsGrabbing(true);
+    lastClientX.current = e.clientX;
+    dragDistance.current = 0;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current) return;
+    const deltaX = e.clientX - lastClientX.current;
+    lastClientX.current = e.clientX;
+    dragDistance.current += Math.abs(deltaX);
+    targetOffset.current -= deltaX * 1.15;
+    currentOffset.current -= deltaX * 1.15;
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+    setIsGrabbing(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isDragging.current = true;
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    lastClientX.current = e.touches[0].clientX;
+    isHorizontalSwipe.current = null;
+    dragDistance.current = 0;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging.current) return;
+    const currentClientX = e.touches[0].clientX;
+    const currentClientY = e.touches[0].clientY;
+    const diffX = currentClientX - touchStartX.current;
+    const diffY = currentClientY - touchStartY.current;
+
+    if (isHorizontalSwipe.current === null) {
+      if (Math.abs(diffX) > 6 || Math.abs(diffY) > 6) {
+        isHorizontalSwipe.current = Math.abs(diffX) > Math.abs(diffY);
+      }
+    }
+
+    if (isHorizontalSwipe.current) {
+      const deltaX = currentClientX - lastClientX.current;
+      lastClientX.current = currentClientX;
+      dragDistance.current += Math.abs(deltaX);
+      targetOffset.current -= deltaX * 1.25;
+      currentOffset.current -= deltaX * 1.25;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    isDragging.current = false;
+    isHorizontalSwipe.current = null;
+  };
+
+  const handleCardLinkClick = (e: React.MouseEvent) => {
+    if (dragDistance.current > 8) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
 
   return (
     <section ref={sectionRef} id="yorumlar" className="snap-section py-10 sm:py-20 bg-zinc-50 dark:bg-[#08080A] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
@@ -466,9 +594,9 @@ export default function Testimonials() {
                   </button>
                 ))}
               </div>
-              <span className="text-[11px] font-sans text-zinc-400 md:hidden shrink-0 flex items-center gap-1.5">
+              <span className="text-[11px] font-sans text-zinc-400 shrink-0 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Canlı Google Akışı</span>
+                <span>Kaydırarak veya Sürükleyerek Gezin</span>
               </span>
             </div>
 
@@ -490,60 +618,60 @@ export default function Testimonials() {
                 ))}
               </div>
             ) : (
-              <>
-                {/* Mobile Dual Continuous Marquee (Opposite directions: One moves Left, One moves Right) */}
-                <div className="md:hidden space-y-3.5 overflow-hidden -mx-4 px-4 py-1 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
-                  {/* Strip 1: Moving Left */}
-                  <div className="animate-marquee-left gap-3.5">
-                    {row1Reviews.map((review, idx) => (
+              /* Interactive Dual Opposite Conveyor (Scroll-Linked + Drag-Driven) */
+              <div
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                className={`space-y-3.5 sm:space-y-4 overflow-hidden -mx-4 px-4 py-1 select-none ${
+                  isGrabbing ? 'cursor-grabbing' : 'cursor-grab'
+                } [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]`}
+              >
+                {/* Strip 1: Moves Left on Scroll Down / Drag */}
+                <div
+                  ref={strip1Ref}
+                  className="flex w-max gap-3.5 sm:gap-4 will-change-transform"
+                >
+                  {stripReviews.map((review, idx) => (
+                    <div
+                      key={`s1-${review.id}-${idx}`}
+                      ref={idx === 0 ? cardSampleRef : undefined}
+                      className="w-[285px] sm:w-[340px] md:w-[380px] shrink-0"
+                    >
                       <ReviewCard
-                        key={`m-r1-${review.id}-${idx}`}
                         review={review}
                         idx={idx}
                         googleMapsUrl={googleMapsUrl}
-                        className="w-[285px] shrink-0"
+                        onCardClick={handleCardLinkClick}
                       />
-                    ))}
-                  </div>
+                    </div>
+                  ))}
+                </div>
 
-                  {/* Strip 2: Moving Right */}
-                  <div className="animate-marquee-right gap-3.5">
-                    {row2Reviews.map((review, idx) => (
+                {/* Strip 2: Moves Right on Scroll Down / Drag (Exact Mirror/Opposite) */}
+                <div
+                  ref={strip2Ref}
+                  className="flex w-max gap-3.5 sm:gap-4 will-change-transform"
+                >
+                  {strip2Reviews.map((review, idx) => (
+                    <div
+                      key={`s2-${review.id}-${idx}`}
+                      className="w-[285px] sm:w-[340px] md:w-[380px] shrink-0"
+                    >
                       <ReviewCard
-                        key={`m-r2-${review.id}-${idx}`}
                         review={review}
                         idx={idx + 2}
                         googleMapsUrl={googleMapsUrl}
-                        className="w-[285px] shrink-0"
+                        onCardClick={handleCardLinkClick}
                       />
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
-
-                {/* Desktop Grid Layout */}
-                <motion.div ref={sliderRef} layout className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 px-0.5">
-                  <AnimatePresence mode="popLayout">
-                    {filteredReviews.map((review, idx) => (
-                      <motion.div
-                        key={review.id}
-                        layout
-                        initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                        transition={{ duration: 0.35, delay: idx * 0.05, ease: [0.23, 1, 0.32, 1] }}
-                      >
-                        <ReviewCard
-                          review={review}
-                          idx={idx}
-                          googleMapsUrl={googleMapsUrl}
-                          className="h-full"
-                        />
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
-                </motion.div>
-              </>
+              </div>
             )}
 
             {/* Interactive "Bizi Değerlendirin" 5-Star Rating CTA Widget */}
