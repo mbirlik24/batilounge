@@ -100,9 +100,70 @@ function ReviewAvatar({
   );
 }
 
+const DEFAULT_REVIEWS_DATA: ReviewsApiResponse = {
+  placeName: 'Batı Lounge',
+  formattedAddress: 'Alya Evleri, Zekeriyaköy, Tatar Sk. No:3, Sarıyer / İstanbul',
+  overallRating: 5.0,
+  totalRatingsCount: 5,
+  reviews: [
+    {
+      id: 'g-rev-1',
+      authorName: 'Orhan Bayır',
+      profilePhotoUrl: 'https://lh3.googleusercontent.com/a-/ALV-UjW8LZKYfsfsmPtw0SpOk0OrtZnEcVNWdif2KilRxGzyU60EKRnz=s128-c0x00000000-cc-rp-mo',
+      rating: 5,
+      relativeTime: '4 hafta önce',
+      text: 'Yeni bir nefes katmış buralara ihtiyaç vardı zaten',
+      verified: true,
+    },
+    {
+      id: 'g-rev-2',
+      authorName: 'Umut Durmaz',
+      profilePhotoUrl: 'https://lh3.googleusercontent.com/a-/ALV-UjXn1o2E8XDDRsRUifvjjpsBYN1LcDzMahOCFprrPd393UVLpyUz=s128-c0x00000000-cc-rp-mo-ba3',
+      rating: 5,
+      relativeTime: 'geçen hafta içinde',
+      text: 'Nargileleri müthiş, ortam ferah ve keyifli. Yeni mekanımız..',
+      verified: true,
+    },
+    {
+      id: 'g-rev-3',
+      authorName: 'Metin Yurt',
+      profilePhotoUrl: 'https://lh3.googleusercontent.com/a/ACg8ocJgG9N0E2WGL2zlbe-f21XqyJnajIalq_c1eMzjhSU-Oqi10Q=s128-c0x00000000-cc-rp-mo',
+      rating: 5,
+      relativeTime: '2 hafta önce',
+      text: 'Nargile içtim çok güzeldi bir nargile gurmesi olarak öneriyorum',
+      verified: true,
+    },
+    {
+      id: 'g-rev-4',
+      authorName: 'Hasan Dündar',
+      profilePhotoUrl: 'https://lh3.googleusercontent.com/a/ACg8ocIvLD36UzpK-wBnPqGASX7OwPPeJSVOszcszbMl2Jprqn2_Iw=s128-c0x00000000-cc-rp-mo',
+      rating: 5,
+      relativeTime: '2 hafta önce',
+      text: 'Yemek yeme fırsatım olmadı ama nargileler çok iyiymiş.',
+      verified: true,
+    },
+    {
+      id: 'g-rev-5',
+      authorName: 'Semih Beroje',
+      profilePhotoUrl: 'https://lh3.googleusercontent.com/a/ACg8ocJovXzIuPuEi-1cbxHjlLwtTUYmCmCRKK_1EYZGj8k25aPZ0w=s128-c0x00000000-cc-rp-mo',
+      rating: 5,
+      relativeTime: 'bir hafta önce',
+      text: "Servis ve atmosfer harikaydı, Zekeriyaköy'de kesinlikle tavsiye edeceğim mekan.",
+      verified: true,
+    },
+  ],
+  photos: [
+    { url: '/images/terrace.jpg', width: 800, height: 600 },
+    { url: '/images/vip.jpg', width: 800, height: 600 },
+    { url: '/images/steak.jpg', width: 800, height: 600 },
+    { url: '/images/dessert.jpg', width: 800, height: 600 },
+  ],
+  googleMapsUrl: 'https://www.google.com/maps/place/?q=place_id:ChIJU3RgEYvhn0ARRzRkoC05-vo',
+};
+
 export default function Testimonials() {
-  const [data, setData] = useState<ReviewsApiResponse | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [data, setData] = useState<ReviewsApiResponse>(DEFAULT_REVIEWS_DATA);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeFilter, setActiveFilter] = useState<string>('Tümü');
   const [hoverRating, setHoverRating] = useState<number>(0);
   

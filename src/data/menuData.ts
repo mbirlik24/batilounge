@@ -43,7 +43,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Özel Lezzet',
     prepTime: '20 dk',
     calories: '680 kcal',
-    image: '/menu-images/bonfile-cafe-de-paris-soslu.jpeg'
+    image: '/menu-images/bonfile-cafe-de-paris-soslu.webp'
   },
   {
     id: 'bonfile-lokum',
@@ -54,7 +54,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Popüler',
     prepTime: '18 dk',
     calories: '610 kcal',
-    image: '/menu-images/bonfile-lokum.jpeg'
+    image: '/menu-images/bonfile-lokum.webp'
   },
   {
     id: 'kavurma-sac',
@@ -65,7 +65,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Geleneksel',
     prepTime: '18 dk',
     calories: '740 kcal',
-    image: '/menu-images/kavurma-sac.jpeg'
+    image: '/menu-images/kavurma-sac.webp'
   },
   {
     id: 'kofte-izgara',
@@ -76,7 +76,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Klasik',
     prepTime: '15 dk',
     calories: '580 kcal',
-    image: '/menu-images/kofte-izgara.jpeg'
+    image: '/menu-images/kofte-izgara.webp'
   },
   {
     id: 'schnitzel-cafe-de-paris',
@@ -87,7 +87,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Özel Lezzet',
     prepTime: '15 dk',
     calories: '620 kcal',
-    image: '/menu-images/schnitzel-cafe-de-paris-soslu.jpeg'
+    image: '/menu-images/schnitzel-cafe-de-paris-soslu.webp'
   },
   {
     id: 'tavuk-schnitzel',
@@ -97,7 +97,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Çıtır panko pane tavuk fileto, eritilmiş tereyağı, taze limon dilimleri ve hardallı patates püresi veya patates tava.',
     prepTime: '14 dk',
     calories: '550 kcal',
-    image: '/menu-images/tavuk-schnitzel.jpeg'
+    image: '/menu-images/tavuk-schnitzel.webp'
   },
   {
     id: 'tavuk-bbq-soslu',
@@ -107,7 +107,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Füme barbekü sosuyla sırlanmış ızgara tavuk parçaları, susam ve çıtır patates.',
     prepTime: '15 dk',
     calories: '530 kcal',
-    image: '/menu-images/tavuk-bbq-soslu.jpeg'
+    image: '/menu-images/tavuk-bbq-soslu.webp'
   },
   {
     id: 'tavuk-pirzola-kekikli',
@@ -117,7 +117,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Taze dağ kekiği ve zeytinyağı marinasyonlu ızgara kemiksiz tavuk pirzola, közlenmiş sebzelerle.',
     prepTime: '16 dk',
     calories: '490 kcal',
-    image: '/menu-images/tavuk-pirzola-kekikli.jpeg'
+    image: '/menu-images/tavuk-pirzola-kekikli.webp'
   },
   {
     id: 'tavuk-mantar-soslu',
@@ -127,7 +127,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Kültür ve istiridye mantarlı krema sosunda pişirilmiş julyen tavuk göğsü, pirinç pilavı ve patates tava.',
     prepTime: '15 dk',
     calories: '560 kcal',
-    image: '/menu-images/tavuk-mantar-soslu.jpeg'
+    image: '/menu-images/tavuk-mantar-soslu.webp'
   },
   {
     id: 'tavuk-kori-soslu',
@@ -137,7 +137,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Hint köri baharatları, taze krema, mantar ve kapya biberle harmanlanmış yumuşak tavuk dilimleri.',
     prepTime: '15 dk',
     calories: '540 kcal',
-    image: '/menu-images/tavuk-kori-soslu.jpeg'
+    image: '/menu-images/tavuk-kori-soslu.webp'
   },
   {
     id: 'fajita-combo',
@@ -148,7 +148,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Özel Sunum',
     prepTime: '20 dk',
     calories: '720 kcal',
-    image: '/menu-images/fajita-combo.jpeg'
+    image: '/menu-images/fajita-combo.webp'
   },
   {
     id: 'fajita-etli',
@@ -158,7 +158,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Döküm tavada sotelenmiş dana bonfile şeritleri, ızgara soğan ve biberler, 3 çeşit sos ve sıcak lavaşlar.',
     prepTime: '18 dk',
     calories: '650 kcal',
-    image: '/menu-images/fajita-etli.jpeg'
+    image: '/menu-images/fajita-etli.webp'
   },
   {
     id: 'fajita-tavuk',
@@ -168,7 +168,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Meksika baharatlarıyla marine edilmiş tavuk şeritleri, köz sebzeler ve dipsoslar.',
     prepTime: '16 dk',
     calories: '590 kcal',
-    image: '/menu-images/fajita-tavuk.jpeg'
+    image: '/menu-images/fajita-tavuk.webp'
   },
 
   // --- KAHVALTI ---
@@ -181,7 +181,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Popüler',
     prepTime: '15 dk',
     calories: '1450 kcal',
-    image: '/menu-images/serpme-kahvalti.jpeg'
+    image: '/menu-images/serpme-kahvalti.webp'
   },
   {
     id: 'kahvalti-tabagi',
@@ -192,7 +192,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Popüler',
     prepTime: '10 dk',
     calories: '680 kcal',
-    image: '/menu-images/kahvalti-tabagi.jpeg'
+    image: '/menu-images/kahvalti-tabagi.webp'
   },
   {
     id: 'menemen-karisik',
@@ -203,7 +203,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Ev Yapımı',
     prepTime: '12 dk',
     calories: '490 kcal',
-    image: '/menu-images/menemen-karisik.jpeg'
+    image: '/menu-images/menemen-karisik.webp'
   },
   {
     id: 'menemen-sade',
@@ -213,7 +213,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Köy yumurtası, tereyağında hafif kavrulmuş domates ve yeşil biberle bakır sahanda sıcak servis.',
     prepTime: '10 dk',
     calories: '340 kcal',
-    image: '/menu-images/menemen.jpeg'
+    image: '/menu-images/menemen.webp'
   },
   {
     id: 'omlet-karisik',
@@ -223,7 +223,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Kaşar peyniri, dana sucuk ve mantar dolgulu, yanında mini Akdeniz yeşilliği ile.',
     prepTime: '10 dk',
     calories: '410 kcal',
-    image: '/menu-images/omlet-karisik.jpeg'
+    image: '/menu-images/omlet-karisik.webp'
   },
   {
     id: 'omlet-mantarli',
@@ -233,7 +233,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Tereyağında sotelenmiş taze kültür mantarları ve kekikli çırpılmış yumurta.',
     prepTime: '10 dk',
     calories: '320 kcal',
-    image: '/menu-images/omlet-mantarli.jpeg'
+    image: '/menu-images/omlet-mantarli.webp'
   },
   {
     id: 'omlet-sade',
@@ -243,7 +243,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Hafif ve puf kıvamında tereyağlı 3 yumurtalı omlet.',
     prepTime: '8 dk',
     calories: '280 kcal',
-    image: '/menu-images/omlet-sade.jpeg'
+    image: '/menu-images/omlet-sade.webp'
   },
   {
     id: 'sucuk-tava',
@@ -253,7 +253,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Hakiki fermente dana sucuk dilimleri, sahanda kendi yağında kızartılmış.',
     prepTime: '8 dk',
     calories: '420 kcal',
-    image: '/menu-images/sucuk-tava.jpeg'
+    image: '/menu-images/sucuk-tava.webp'
   },
   {
     id: 'yumurta-sahanda',
@@ -263,7 +263,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Trabzon tereyağında pişirilmiş iki adet göz yumurta, pul biber ve taze ekmekle.',
     prepTime: '6 dk',
     calories: '260 kcal',
-    image: '/menu-images/yumurta-sahanda.jpeg'
+    image: '/menu-images/yumurta-sahanda.webp'
   },
 
   // --- ATIŞTIRMALIK & BAŞLANGIÇ ---
@@ -276,7 +276,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'En Çok Satan',
     prepTime: '12 dk',
     calories: '890 kcal',
-    image: '/menu-images/bati-lounge-sepet.jpeg'
+    image: '/menu-images/bati-lounge-sepet.webp'
   },
   {
     id: 'citir-tavuk',
@@ -287,7 +287,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Popüler',
     prepTime: '10 dk',
     calories: '540 kcal',
-    image: '/menu-images/citir-tavuk.jpeg'
+    image: '/menu-images/citir-tavuk.webp'
   },
   {
     id: 'pacanga-boregi',
@@ -298,7 +298,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Ev Yapımı',
     prepTime: '10 dk',
     calories: '480 kcal',
-    image: '/menu-images/pacanga-boregi.jpeg'
+    image: '/menu-images/pacanga-boregi.webp'
   },
   {
     id: 'sigara-boregi',
@@ -308,7 +308,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Maydanozlu Ezine peyniri dolgulu, altın rengi kızartılmış geleneksel kalem börek.',
     prepTime: '8 dk',
     calories: '360 kcal',
-    image: '/menu-images/sigara-boregi.jpeg'
+    image: '/menu-images/sigara-boregi.webp'
   },
   {
     id: 'sosis-tava',
@@ -318,7 +318,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Kekikli domates sosunda sotelenmiş dana kokteyl sosisler, patates tava ile.',
     prepTime: '8 dk',
     calories: '410 kcal',
-    image: '/menu-images/sosis-tava.jpeg'
+    image: '/menu-images/sosis-tava.webp'
   },
   {
     id: 'patates-tava',
@@ -328,7 +328,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Cajun baharatlı ve deniz tuzlu çıtır patates kızartması, trüflü mayonez ile.',
     prepTime: '6 dk',
     calories: '380 kcal',
-    image: '/menu-images/patates-tava.jpeg'
+    image: '/menu-images/patates-tava.webp'
   },
   {
     id: 'sogan-halkasi',
@@ -338,7 +338,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Bira hamuru kaplamalı çıtır soğan halkaları, acılı barbekü sos ile.',
     prepTime: '6 dk',
     calories: '310 kcal',
-    image: '/menu-images/sogan-halkasi.jpeg'
+    image: '/menu-images/sogan-halkasi.webp'
   },
 
   // --- BURGER & WRAP ---
@@ -351,7 +351,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Özel Lezzet',
     prepTime: '15 dk',
     calories: '840 kcal',
-    image: '/menu-images/burger-bati-lounge.jpeg'
+    image: '/menu-images/burger-bati-lounge.webp'
   },
   {
     id: 'cheeseburger',
@@ -362,7 +362,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Favori',
     prepTime: '14 dk',
     calories: '720 kcal',
-    image: '/menu-images/cheeseburger.jpeg'
+    image: '/menu-images/cheeseburger.webp'
   },
   {
     id: 'hamburger-klasik',
@@ -372,7 +372,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: '150g ızgara dana köfte, domates, marul, tatlı turşu ve el yapımı patates tava.',
     prepTime: '12 dk',
     calories: '620 kcal',
-    image: '/menu-images/hamburger.jpeg'
+    image: '/menu-images/hamburger.webp'
   },
   {
     id: 'wrap-etli',
@@ -383,7 +383,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Doyurucu',
     prepTime: '14 dk',
     calories: '610 kcal',
-    image: '/menu-images/wrap-etli.jpeg'
+    image: '/menu-images/wrap-etli.webp'
   },
   {
     id: 'wrap-izgara-kofte',
@@ -393,7 +393,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Izgara köfte dilimleri, köz patlıcan sosu, domates, sumaklı soğan ve kaşar peyniri.',
     prepTime: '12 dk',
     calories: '590 kcal',
-    image: '/menu-images/wrap-izgara-kofte.jpeg'
+    image: '/menu-images/wrap-izgara-kofte.webp'
   },
   {
     id: 'wrap-tavuk-mantar',
@@ -403,7 +403,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Kremalı tavuk ve mantar sotesi, rendelenmiş mozarella ve çıtır patates eşliğinde.',
     prepTime: '12 dk',
     calories: '530 kcal',
-    image: '/menu-images/wrap-tavuk-ve-mantar.jpeg'
+    image: '/menu-images/wrap-tavuk-ve-mantar.webp'
   },
 
   // --- PIZZA, PİDE & TOST ---
@@ -416,7 +416,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Özel Lezzet',
     prepTime: '15 dk',
     calories: '880 kcal',
-    image: '/menu-images/bati-lounge-special-pizza.jpeg'
+    image: '/menu-images/bati-lounge-special-pizza.webp'
   },
   {
     id: 'pizza-karisik',
@@ -427,7 +427,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Klasik',
     prepTime: '15 dk',
     calories: '820 kcal',
-    image: '/menu-images/karisik-pizza.jpeg'
+    image: '/menu-images/karisik-pizza.webp'
   },
   {
     id: 'pizza-4-peynirli',
@@ -437,7 +437,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Mozzarella, gorgonzola/rokfor esintisi, gouda ve parmesan peyniri, taze fesleğenle.',
     prepTime: '14 dk',
     calories: '790 kcal',
-    image: '/menu-images/4-peynirli-pizza.jpeg'
+    image: '/menu-images/4-peynirli-pizza.webp'
   },
   {
     id: 'pizza-bbq',
@@ -447,7 +447,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Füme barbekü sos tabanı, mozzarella, ızgara tavuk parçaları, kırmızı soğan ve mısır.',
     prepTime: '14 dk',
     calories: '760 kcal',
-    image: '/menu-images/bbq-pizza.jpeg'
+    image: '/menu-images/bbq-pizza.webp'
   },
   {
     id: 'pizza-margarita',
@@ -457,7 +457,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'San Marzano domates sosu, manda mozzarellası, sızma zeytinyağı ve taze fesleğen yaprakları.',
     prepTime: '12 dk',
     calories: '650 kcal',
-    image: '/menu-images/margarita-pizza.jpeg'
+    image: '/menu-images/margarita-pizza.webp'
   },
   {
     id: 'kavurma-pide',
@@ -468,7 +468,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Fırından Taze',
     prepTime: '14 dk',
     calories: '810 kcal',
-    image: '/menu-images/kavurma-pide.jpeg'
+    image: '/menu-images/kavurma-pide.webp'
   },
   {
     id: 'karisik-pide',
@@ -478,7 +478,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Kıymalı harç, dana sucuk, taze kaşar peyniri ve domates-biber.',
     prepTime: '14 dk',
     calories: '780 kcal',
-    image: '/menu-images/karisik-pide.jpeg'
+    image: '/menu-images/karisik-pide.webp'
   },
   {
     id: 'peynirli-pide',
@@ -488,7 +488,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Ezine ve kaşar peyniri harmanlı, tereyağlı çıtır taş fırın pidesi.',
     prepTime: '12 dk',
     calories: '690 kcal',
-    image: '/menu-images/peynirli-pide.jpeg'
+    image: '/menu-images/peynirli-pide.webp'
   },
   {
     id: 'ayvalik-tostu',
@@ -499,7 +499,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Doyurucu',
     prepTime: '10 dk',
     calories: '640 kcal',
-    image: '/menu-images/ayvalik-tostu.jpeg'
+    image: '/menu-images/ayvalik-tostu.webp'
   },
   {
     id: 'kavurmali-tost',
@@ -509,7 +509,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Köy ekmeğinde lezzetli dana kavurma ve bol kaşar peyniri, domates-salatalık ile.',
     prepTime: '8 dk',
     calories: '520 kcal',
-    image: '/menu-images/kavurmali-tost.jpeg'
+    image: '/menu-images/kavurmali-tost.webp'
   },
   {
     id: 'cheddar-tost',
@@ -519,7 +519,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Yoğun cheddar peyniri ve baharatlı dana sucuk, çıtır tost ekmeğinde.',
     prepTime: '8 dk',
     calories: '490 kcal',
-    image: '/menu-images/cheddar-tost.jpeg'
+    image: '/menu-images/cheddar-tost.webp'
   },
   {
     id: 'karisik-tost',
@@ -529,7 +529,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Kasap sucuğu ve eriyen kaşar peyniri, çıtır patates ile.',
     prepTime: '8 dk',
     calories: '450 kcal',
-    image: '/menu-images/karisik-tost.jpeg'
+    image: '/menu-images/karisik-tost.webp'
   },
   {
     id: 'cift-kasarli-tost',
@@ -539,7 +539,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Bol sütlü taze kaşar peyniriyle hazırlanan klasik tereyağlı tost.',
     prepTime: '7 dk',
     calories: '410 kcal',
-    image: '/menu-images/cift-kasarli-tost.jpeg'
+    image: '/menu-images/cift-kasarli-tost.webp'
   },
   {
     id: 'beyaz-peynirli-tost',
@@ -549,7 +549,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Ezine beyaz peynir, kekikli tarla domatesi ve zeytin ezmesi sürülü tost.',
     prepTime: '7 dk',
     calories: '380 kcal',
-    image: '/menu-images/beyaz-peynirli-tost.jpeg'
+    image: '/menu-images/beyaz-peynirli-tost.webp'
   },
 
   // --- MAKARNA & SALATALAR ---
@@ -562,7 +562,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'İtalyan Klasiği',
     prepTime: '12 dk',
     calories: '670 kcal',
-    image: '/menu-images/fettuccine-alfredo.jpeg'
+    image: '/menu-images/fettuccine-alfredo.webp'
   },
   {
     id: 'penne-al-karne',
@@ -573,7 +573,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Özel Lezzet',
     prepTime: '14 dk',
     calories: '690 kcal',
-    image: '/menu-images/penne-al-karne.jpeg'
+    image: '/menu-images/penne-al-karne.webp'
   },
   {
     id: 'spagetti-bolognese',
@@ -583,7 +583,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Ağır ateşte 4 saat pişmiş kıymalı kök sebzeli İtalyan ragu sosu, fesleğen ve parmesan.',
     prepTime: '12 dk',
     calories: '590 kcal',
-    image: '/menu-images/spagetti-bolognese.jpeg'
+    image: '/menu-images/spagetti-bolognese.webp'
   },
   {
     id: 'penne-arabiata',
@@ -594,7 +594,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Hafif Acılı',
     prepTime: '10 dk',
     calories: '480 kcal',
-    image: '/menu-images/penne-arabiata.jpeg'
+    image: '/menu-images/penne-arabiata.webp'
   },
   {
     id: 'spagetti-napolitan',
@@ -604,7 +604,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Fesleğenli taze domates sosu, zeytinyağı ve parmesan.',
     prepTime: '10 dk',
     calories: '460 kcal',
-    image: '/menu-images/spagetti-napolitan.jpeg'
+    image: '/menu-images/spagetti-napolitan.webp'
   },
   {
     id: 'beef-salata',
@@ -615,7 +615,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Fit & Lüks',
     prepTime: '12 dk',
     calories: '460 kcal',
-    image: '/menu-images/beef-salata.jpeg'
+    image: '/menu-images/beef-salata.webp'
   },
   {
     id: 'tavuklu-sezar-salata',
@@ -626,7 +626,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Popüler',
     prepTime: '10 dk',
     calories: '420 kcal',
-    image: '/menu-images/tavuklu-sezar-salata.jpeg'
+    image: '/menu-images/tavuklu-sezar-salata.webp'
   },
   {
     id: 'hellim-peynirli-salata',
@@ -636,7 +636,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Kömürde ızgara edilmiş Kıbrıs hellim peyniri, nar ekşili zeytinyağlı taze mevsim yeşillikleri, mısır ve ceviz içi.',
     prepTime: '10 dk',
     calories: '390 kcal',
-    image: '/menu-images/hellim-peynirli-salata.jpeg'
+    image: '/menu-images/hellim-peynirli-salata.webp'
   },
   {
     id: 'ton-balikli-salata',
@@ -646,7 +646,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Parça ton balığı, haşlanmış mısır, kapari, zeytin, kırmızı soğan, taze yeşillikler ve limon sos.',
     prepTime: '8 dk',
     calories: '370 kcal',
-    image: '/menu-images/ton-balikli-salata.jpeg'
+    image: '/menu-images/ton-balikli-salata.webp'
   },
 
   // --- TATLI & MEYVE ---
@@ -659,7 +659,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Popüler',
     prepTime: '12 dk',
     calories: '510 kcal',
-    image: '/menu-images/sufle-ev-yapimi.jpeg'
+    image: '/menu-images/sufle-ev-yapimi.webp'
   },
   {
     id: 'browni',
@@ -670,7 +670,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Popüler',
     prepTime: '8 dk',
     calories: '540 kcal',
-    image: '/menu-images/browni.jpeg'
+    image: '/menu-images/browni.webp'
   },
   {
     id: 'bati-lounge-pasta',
@@ -681,7 +681,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Özel Sunum',
     prepTime: '5 dk',
     calories: '460 kcal',
-    image: '/menu-images/bati-lounge-pasta.jpeg'
+    image: '/menu-images/bati-lounge-pasta.webp'
   },
   {
     id: 'tiramisu',
@@ -691,7 +691,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Espresso ile ıslatılmış savoiardi kedidili bisküvileri, mascarpone peynirli ipeksi krema ve saf kakao tozu.',
     prepTime: '5 dk',
     calories: '390 kcal',
-    image: '/menu-images/tiramusu.jpeg'
+    image: '/menu-images/tiramusu.webp'
   },
   {
     id: 'cheesecake-san-sebastian',
@@ -702,7 +702,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Favori',
     prepTime: '5 dk',
     calories: '480 kcal',
-    image: '/menu-images/cheesecake.jpeg'
+    image: '/menu-images/cheesecake.webp'
   },
   {
     id: 'profiterol',
@@ -712,7 +712,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Taze şu hamurları içinde nefis pastacı kreması, bol sıcak çikolata sosu ve Antep fıstığı tozu.',
     prepTime: '5 dk',
     calories: '420 kcal',
-    image: '/menu-images/profiterol.jpeg'
+    image: '/menu-images/profiterol.webp'
   },
   {
     id: 'meyve-tabagi',
@@ -723,7 +723,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Paylaşımlık',
     prepTime: '10 dk',
     calories: '280 kcal',
-    image: '/menu-images/meyve-tabagi.jpeg'
+    image: '/menu-images/meyve-tabagi.webp'
   },
   {
     id: 'kuruyemis',
@@ -733,7 +733,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Kaju, Antep fıstığı, kavrulmuş badem, fındık ve ceviz içi karışımı.',
     prepTime: '3 dk',
     calories: '410 kcal',
-    image: '/menu-images/kuruyemis.jpeg'
+    image: '/menu-images/kuruyemis.webp'
   },
 
   // --- KAHVE & ÇAY RİTÜELİ ---
@@ -746,7 +746,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Klasik',
     prepTime: '5 dk',
     calories: '15 kcal',
-    image: '/menu-images/kahve-turk.jpeg'
+    image: '/menu-images/kahve-turk.webp'
   },
   {
     id: 'kahve-turk-double',
@@ -756,7 +756,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Duble fincanda yoğun aromalı geleneksel Türk kahvesi.',
     prepTime: '5 dk',
     calories: '25 kcal',
-    image: '/menu-images/kahve-turk-double.jpeg'
+    image: '/menu-images/kahve-turk-double.webp'
   },
   {
     id: 'kahve-dibek',
@@ -766,7 +766,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Havanla dövülmüş 7 çeşit baharatlı ve yumuşak içimli aromatik Türk kahvesi.',
     prepTime: '5 dk',
     calories: '35 kcal',
-    image: '/menu-images/kahve-turk-dibek.jpeg'
+    image: '/menu-images/kahve-turk-dibek.webp'
   },
   {
     id: 'flat-white',
@@ -777,7 +777,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Barista Seçimi',
     prepTime: '4 dk',
     calories: '120 kcal',
-    image: '/menu-images/flat-white.jpeg'
+    image: '/menu-images/flat-white.webp'
   },
   {
     id: 'cafe-latte',
@@ -787,7 +787,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Espresso, buharda ısıtılmış kadife süt ve hafif süt kreması.',
     prepTime: '4 dk',
     calories: '140 kcal',
-    image: '/menu-images/cafe-latte.jpeg'
+    image: '/menu-images/cafe-latte.webp'
   },
   {
     id: 'cappuccino',
@@ -797,7 +797,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Eşit oranlı espresso, sıcak süt ve yoğun süt köpüğü, kakao serpintisi ile.',
     prepTime: '4 dk',
     calories: '110 kcal',
-    image: '/menu-images/cappuccino.jpeg'
+    image: '/menu-images/cappuccino.webp'
   },
   {
     id: 'americano',
@@ -807,7 +807,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Double shot taze espresso ve sıcak suyun berrak dengesi.',
     prepTime: '3 dk',
     calories: '10 kcal',
-    image: '/menu-images/americano.jpeg'
+    image: '/menu-images/americano.webp'
   },
   {
     id: 'espresso-double',
@@ -817,7 +817,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: '%100 Arabica çekirdeklerinden yoğun kremalı çift shot İtalyan espresso.',
     prepTime: '2 dk',
     calories: '5 kcal',
-    image: '/menu-images/espresso-double.jpeg'
+    image: '/menu-images/espresso-double.webp'
   },
   {
     id: 'chai-latte',
@@ -827,7 +827,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Siyah çay, tarçın, kakule, zencefil baharat harmanı ve buharlanmış tatlı süt köpüğü.',
     prepTime: '4 dk',
     calories: '180 kcal',
-    image: '/menu-images/chai-latte.jpeg'
+    image: '/menu-images/chai-latte.webp'
   },
   {
     id: 'white-chocolate-mocha',
@@ -837,7 +837,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Beyaz çikolata sosu, espresso, süt ve krema.',
     prepTime: '4 dk',
     calories: '260 kcal',
-    image: '/menu-images/white-chocolate-mocha.jpeg'
+    image: '/menu-images/white-chocolate-mocha.webp'
   },
   {
     id: 'sahlep',
@@ -847,7 +847,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Doğal sahlep tozu, tam yağlı süt ve bol tarçınla sıcacık kış lezzeti.',
     prepTime: '5 dk',
     calories: '220 kcal',
-    image: '/menu-images/sahlep.jpeg'
+    image: '/menu-images/sahlep.webp'
   },
   {
     id: 'cay-bardak',
@@ -857,7 +857,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Rize yaylalarından harmanlanmış, bakır semaverde demlenmiş taze çay.',
     prepTime: '1 dk',
     calories: '2 kcal',
-    image: '/menu-images/cay-bardak.jpeg'
+    image: '/menu-images/cay-bardak.webp'
   },
   {
     id: 'cay-yesil-cesitleri',
@@ -867,7 +867,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Yaseminli yeşil çay, ıhlamur, adaçayı, kış çayı veya papatya seçenekleriyle porselen pot servisi.',
     prepTime: '5 dk',
     calories: '5 kcal',
-    image: '/menu-images/cay-yesil-cesitleri.jpeg'
+    image: '/menu-images/cay-yesil-cesitleri.webp'
   },
 
   // --- SOĞUK İÇECEK & MOCKTAIL ---
@@ -880,7 +880,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'İmza İçecek',
     prepTime: '4 dk',
     calories: '110 kcal',
-    image: '/menu-images/bati-sunset-mocktail.jpeg'
+    image: '/menu-images/bati-sunset-mocktail.webp'
   },
   {
     id: 'limonata-ev-yapimi',
@@ -891,7 +891,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Ev Yapımı',
     prepTime: '3 dk',
     calories: '95 kcal',
-    image: '/menu-images/limonata.jpeg'
+    image: '/menu-images/limonata.webp'
   },
   {
     id: 'meyve-suyu-taze',
@@ -902,7 +902,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Doğal',
     prepTime: '4 dk',
     calories: '130 kcal',
-    image: '/menu-images/meyve-suyu-taze-sikilmis.jpeg'
+    image: '/menu-images/meyve-suyu-taze-sikilmis.webp'
   },
   {
     id: 'milkshake-cesitleri',
@@ -912,7 +912,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Hakiki İtalyan dondurması, taze süt, krema ve çikolata/meyve parçacıkları ile.',
     prepTime: '4 dk',
     calories: '320 kcal',
-    image: '/menu-images/milkshake.jpeg'
+    image: '/menu-images/milkshake.webp'
   },
   {
     id: 'frozen-cesitleri',
@@ -922,7 +922,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Taze meyve püreleri ve kırılmış buzun eşsiz ferahlatıcı uyumu.',
     prepTime: '3 dk',
     calories: '140 kcal',
-    image: '/menu-images/frozen.jpeg'
+    image: '/menu-images/frozen.webp'
   },
   {
     id: 'frappe-cesitleri',
@@ -932,7 +932,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Köpürtülmüş soğuk espresso, soğuk süt, buz ve isteğe göre vanilya / karamel şurubu.',
     prepTime: '3 dk',
     calories: '110 kcal',
-    image: '/menu-images/frappe.jpeg'
+    image: '/menu-images/frappe.webp'
   },
   {
     id: 'churchill',
@@ -942,7 +942,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Taze limon suyu, kaya tuzu ve doğal maden suyu.',
     prepTime: '2 dk',
     calories: '15 kcal',
-    image: '/menu-images/churchill.jpeg'
+    image: '/menu-images/churchill.webp'
   },
   {
     id: 'redbull',
@@ -952,7 +952,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Klasik veya şekersiz kutu enerji içeceği.',
     prepTime: '1 dk',
     calories: '115 kcal',
-    image: '/menu-images/redbull.jpeg'
+    image: '/menu-images/redbull.webp'
   },
 
   // --- LOUNGE & NARGİLE ---
@@ -965,7 +965,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Özel Sunum',
     prepTime: '8 dk',
     calories: '-',
-    image: '/menu-images/imperial-nargile.jpeg'
+    image: '/menu-images/imperial-nargile.webp'
   },
   {
     id: 'nargile-love66',
@@ -976,7 +976,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Popüler',
     prepTime: '8 dk',
     calories: '-',
-    image: '/menu-images/imperial-nargile.jpeg'
+    image: '/menu-images/imperial-nargile.webp'
   },
   {
     id: 'nargile-cift-elma',
@@ -986,7 +986,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Otantik lezzet sevenler için geleneksel çift elma aroması.',
     prepTime: '8 dk',
     calories: '-',
-    image: '/menu-images/imperial-nargile.jpeg'
+    image: '/menu-images/imperial-nargile.webp'
   },
   {
     id: 'nargile-meyve-baslikli',
@@ -997,6 +997,6 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'VIP Özel',
     prepTime: '12 dk',
     calories: '-',
-    image: '/menu-images/ananas-vip-nargile.jpeg'
+    image: '/menu-images/ananas-vip-nargile.webp'
   },
 ];
