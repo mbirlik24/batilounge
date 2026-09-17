@@ -222,8 +222,8 @@ export default function MenuPage() {
           })}
         </div>
 
-            {/* Menu Items Grid with Photos */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Menu Items Grid with Photos - 4 to 5 per row */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-3.5 lg:gap-4">
               {filteredItems.length > 0 ? (
                 filteredItems.map((item, index) => (
                   <motion.div
@@ -234,45 +234,45 @@ export default function MenuPage() {
                     onClick={() => setSelectedItem(item)}
                     className="group rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-zinc-900 hover:border-black/[0.2] dark:hover:border-white/[0.2] transition-all duration-200 cursor-pointer overflow-hidden flex flex-col justify-between shadow-apple-sm hover:shadow-apple-md"
                   >
-                {/* Item Image - Full Square (1:1) No Crop */}
-                {item.image && (
-                  <div className="relative aspect-square w-full bg-zinc-100 dark:bg-zinc-950 overflow-hidden">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                    />
-                    {item.tag && (
-                      <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-sans font-medium bg-black/60 backdrop-blur-md text-white border border-white/10">
-                        {item.tag}
-                      </span>
+                    {/* Item Image - Full Square (1:1) No Crop */}
+                    {item.image && (
+                      <div className="relative aspect-square w-full bg-zinc-100 dark:bg-zinc-950 overflow-hidden">
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                        />
+                        {item.tag && (
+                          <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full text-[9px] font-sans font-medium bg-black/60 backdrop-blur-md text-white border border-white/10">
+                            {item.tag}
+                          </span>
+                        )}
+                        <span className="absolute bottom-2.5 right-2.5 px-2.5 py-0.5 rounded-full text-[11px] font-sans font-semibold bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md text-[#1D1D1F] dark:text-white shadow-apple-sm">
+                          {item.price} ₺
+                        </span>
+                      </div>
                     )}
-                    <span className="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-sans font-semibold bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md text-[#1D1D1F] dark:text-white shadow-apple-sm">
-                      {item.price} ₺
-                    </span>
-                  </div>
-                )}
 
-                    <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                    <div className="p-3 sm:p-3.5 flex-1 flex flex-col justify-between">
                       <div>
-                        <h4 className="font-heading font-normal text-base text-[#1D1D1F] dark:text-white mb-1.5 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                        <h4 className="font-heading font-normal text-xs sm:text-sm text-[#1D1D1F] dark:text-white mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-1">
                           {item.name}
                         </h4>
 
-                        <p className="text-xs font-sans font-light text-[#86868B] dark:text-zinc-400 leading-relaxed line-clamp-2 mb-3">
+                        <p className="text-[11px] font-sans font-light text-[#86868B] dark:text-zinc-400 leading-snug line-clamp-2 mb-2 sm:mb-2.5">
                           {item.description}
                         </p>
                       </div>
 
-                      <div className="flex items-center justify-between pt-3 border-t border-black/[0.04] dark:border-white/[0.06] text-[11px] font-sans text-[#86868B]">
+                      <div className="flex items-center justify-between pt-2 border-t border-black/[0.04] dark:border-white/[0.06] text-[10px] font-sans text-[#86868B]">
                         <span className="flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
+                          <Clock className="w-2.5 h-2.5" />
                           {item.prepTime || '8-12 dk'}
                         </span>
                         <span className="text-[#1D1D1F] dark:text-white font-medium flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
-                          İncele <ChevronRight className="w-3.5 h-3.5" />
+                          İncele <ChevronRight className="w-3 h-3" />
                         </span>
                       </div>
                     </div>
