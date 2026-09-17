@@ -3,6 +3,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { ClientToaster } from '@/components/ClientToaster';
 import JsonLd from '@/components/JsonLd';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://batilounge.com'),
@@ -97,6 +98,7 @@ export default function RootLayout({
           {children}
           <ClientToaster />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
