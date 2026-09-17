@@ -69,35 +69,35 @@ export default function TypewriterHeading({
 
   const Tag = as;
   const currentText = fullText.slice(0, charIndex);
+  const remainingText = fullText.slice(charIndex);
+
   const currentLines = currentText.split('\n');
+  const remainingLines = remainingText.split('\n');
 
   return (
-    <Tag ref={ref} className={`relative ${className}`}>
-      {/* Invisible full text reserve to guarantee ZERO Layout Shift (CLS) */}
-      <span className="invisible select-none pointer-events-none aria-hidden:true block">
-        {targetLines.map((line, idx) => (
-          <React.Fragment key={idx}>
-            {line}
-            {idx < targetLines.length - 1 && <br />}
-          </React.Fragment>
-        ))}
-      </span>
-
-      {/* Visible Typing Layer */}
-      <span className="absolute inset-0 top-0 left-0">
+    <Tag ref={ref} className={className}>
+      <span>
         {currentLines.map((line, idx) => (
           <React.Fragment key={idx}>
             {line}
             {idx < currentLines.length - 1 && <br />}
           </React.Fragment>
         ))}
-        {showCursor && (
-          <span
-            className={`inline-block w-[3px] h-[0.82em] bg-amber-400 ml-1 align-baseline ${
-              isDone ? 'animate-pulse opacity-60' : 'animate-pulse opacity-100'
-            }`}
-          />
-        )}
+      </span>
+      {showCursor && (
+        <span
+          className={`inline-block w-[3px] h-[0.82em] bg-amber-400 ml-1.5 align-baseline select-none ${
+            isDone ? 'animate-pulse opacity-60' : 'animate-pulse opacity-100'
+          }`}
+        />
+      )}
+      <span className="invisible select-none pointer-events-none" aria-hidden="true">
+        {remainingLines.map((line, idx) => (
+          <React.Fragment key={idx}>
+            {line}
+            {idx < remainingLines.length - 1 && <br />}
+          </React.Fragment>
+        ))}
       </span>
     </Tag>
   );

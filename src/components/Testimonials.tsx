@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ExternalLink, MessageSquare, Filter, MapPin, Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
@@ -96,6 +96,79 @@ function ReviewAvatar({
       className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${bgClass} text-white font-sans font-semibold text-xs sm:text-sm flex items-center justify-center shadow-sm shrink-0 border border-white/20`}
     >
       {initial}
+    </div>
+  );
+}
+
+function ReviewCard({
+  review,
+  idx,
+  googleMapsUrl,
+  className = '',
+}: {
+  review: Review;
+  idx: number;
+  googleMapsUrl: string;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`p-4 sm:p-6 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col justify-between shadow-apple-sm relative group ${className}`}
+    >
+      <div>
+        {/* Top Author Bar */}
+        <div className="flex items-start justify-between gap-3 mb-2.5 sm:mb-4">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="relative">
+              <ReviewAvatar
+                src={review.profilePhotoUrl}
+                name={review.authorName}
+                index={idx}
+              />
+              <div className="absolute -bottom-1 -right-1 bg-white dark:bg-zinc-900 rounded-full p-0.5 shadow-sm border border-zinc-200 dark:border-zinc-800">
+                <GoogleLogoIcon className="w-3 h-3" />
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-heading font-medium text-xs sm:text-sm text-zinc-950 dark:text-white">
+                {review.authorName}
+              </h4>
+              <span className="text-[10px] sm:text-[11px] font-sans text-zinc-400 block mt-0.5">
+                {review.relativeTime}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Stars */}
+        <div className="flex items-center gap-1 mb-2 sm:mb-3">
+          {[...Array(review.rating)].map((_, i) => (
+            <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-500 text-amber-500" />
+          ))}
+        </div>
+
+        {/* Review Content */}
+        <p className="text-xs sm:text-sm font-sans font-light text-zinc-700 dark:text-zinc-300 leading-relaxed mb-3 sm:mb-6 line-clamp-3">
+          "{review.text}"
+        </p>
+      </div>
+
+      {/* Card Footer */}
+      <div className="pt-2.5 sm:pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-[10px] sm:text-[11px] font-sans text-zinc-400">
+        <span className="text-emerald-600 dark:text-emerald-400 font-medium">
+          Doğrulanmış Google Yorumu
+        </span>
+        <a
+          href={googleMapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-zinc-900 dark:hover:text-white flex items-center gap-1 transition-colors"
+        >
+          <span>Haritalar</span>
+          <ExternalLink className="w-2.5 h-2.5" />
+        </a>
+      </div>
     </div>
   );
 }
@@ -221,6 +294,26 @@ export default function Testimonials() {
     if (activeFilter === '5 Yıldız') return rev.rating === 5;
     return true;
   });
+
+  const baseReviews = useMemo(() => {
+    if (filteredReviews.length === 0) return [];
+    let list = [...filteredReviews];
+    while (list.length < 6) {
+      list = [...list, ...filteredReviews];
+    }
+    return list;
+  }, [filteredReviews]);
+
+  const row1Reviews = useMemo(() => {
+    return [...baseReviews, ...baseReviews];
+  }, [baseReviews]);
+
+  const row2Reviews = useMemo(() => {
+    if (baseReviews.length === 0) return [];
+    const shift = Math.floor(baseReviews.length / 2);
+    const shifted = [...baseReviews.slice(shift), ...baseReviews.slice(0, shift)];
+    return [...shifted, ...shifted];
+  }, [baseReviews]);
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const sliderRef = useRef<HTMLDivElement | null>(null);
@@ -373,8 +466,9 @@ export default function Testimonials() {
                   </button>
                 ))}
               </div>
-              <span className="text-[11px] font-sans text-zinc-400 md:hidden shrink-0 flex items-center gap-1">
-                Yatay kaydırın →
+              <span className="text-[11px] font-sans text-zinc-400 md:hidden shrink-0 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Canlı Google Akışı</span>
               </span>
             </div>
 
@@ -396,11 +490,40 @@ export default function Testimonials() {
                 ))}
               </div>
             ) : (
-              /* Review Cards Grid inside Master Card with Sweet Micro-Animations - Single horizontal row on mobile */
-              <motion.div ref={sliderRef} layout className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 sm:gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 pb-2 md:pb-0 px-0.5">
-                <AnimatePresence mode="popLayout">
-                  {filteredReviews.map((review, idx) => {
-                    return (
+              <>
+                {/* Mobile Dual Continuous Marquee (Opposite directions: One moves Left, One moves Right) */}
+                <div className="md:hidden space-y-3.5 overflow-hidden -mx-4 px-4 py-1 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+                  {/* Strip 1: Moving Left */}
+                  <div className="animate-marquee-left gap-3.5">
+                    {row1Reviews.map((review, idx) => (
+                      <ReviewCard
+                        key={`m-r1-${review.id}-${idx}`}
+                        review={review}
+                        idx={idx}
+                        googleMapsUrl={googleMapsUrl}
+                        className="w-[285px] shrink-0"
+                      />
+                    ))}
+                  </div>
+
+                  {/* Strip 2: Moving Right */}
+                  <div className="animate-marquee-right gap-3.5">
+                    {row2Reviews.map((review, idx) => (
+                      <ReviewCard
+                        key={`m-r2-${review.id}-${idx}`}
+                        review={review}
+                        idx={idx + 2}
+                        googleMapsUrl={googleMapsUrl}
+                        className="w-[285px] shrink-0"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Desktop Grid Layout */}
+                <motion.div ref={sliderRef} layout className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 px-0.5">
+                  <AnimatePresence mode="popLayout">
+                    {filteredReviews.map((review, idx) => (
                       <motion.div
                         key={review.id}
                         layout
@@ -409,67 +532,18 @@ export default function Testimonials() {
                         exit={{ opacity: 0, scale: 0.95 }}
                         whileHover={{ y: -3, transition: { duration: 0.2 } }}
                         transition={{ duration: 0.35, delay: idx * 0.05, ease: [0.23, 1, 0.32, 1] }}
-                        className="w-[82vw] max-w-[315px] sm:w-[340px] md:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col justify-between shadow-apple-sm relative group"
                       >
-                        <div>
-                          {/* Top Author Bar */}
-                          <div className="flex items-start justify-between gap-3 mb-3 sm:mb-4">
-                            <div className="flex items-center gap-3">
-                              <div className="relative">
-                                <ReviewAvatar
-                                  src={review.profilePhotoUrl}
-                                  name={review.authorName}
-                                  index={idx}
-                                />
-                                <div className="absolute -bottom-1 -right-1 bg-white dark:bg-zinc-900 rounded-full p-0.5 shadow-sm border border-zinc-200 dark:border-zinc-800">
-                                  <GoogleLogoIcon className="w-3 h-3" />
-                                </div>
-                              </div>
-
-                              <div>
-                                <h4 className="font-heading font-medium text-xs sm:text-sm text-zinc-950 dark:text-white">
-                                  {review.authorName}
-                                </h4>
-                                <span className="text-[10px] sm:text-[11px] font-sans text-zinc-400 block mt-0.5">
-                                  {review.relativeTime}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Stars */}
-                          <div className="flex items-center gap-1 mb-2.5 sm:mb-3">
-                            {[...Array(review.rating)].map((_, i) => (
-                              <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-500 text-amber-500" />
-                            ))}
-                          </div>
-
-                          {/* Review Content */}
-                          <p className="text-xs sm:text-sm font-sans font-light text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4 sm:mb-6">
-                            "{review.text}"
-                          </p>
-                        </div>
-
-                        {/* Card Footer */}
-                        <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-[10px] sm:text-[11px] font-sans text-zinc-400">
-                          <span className="text-emerald-600 dark:text-emerald-400 font-medium">
-                            Doğrulanmış Google Yorumu
-                          </span>
-                          <a
-                            href={googleMapsUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-zinc-900 dark:hover:text-white flex items-center gap-1 transition-colors"
-                          >
-                            <span>Haritalar</span>
-                            <ExternalLink className="w-2.5 h-2.5" />
-                          </a>
-                        </div>
+                        <ReviewCard
+                          review={review}
+                          idx={idx}
+                          googleMapsUrl={googleMapsUrl}
+                          className="h-full"
+                        />
                       </motion.div>
-                    );
-                  })}
-                </AnimatePresence>
-              </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
+              </>
             )}
 
             {/* Interactive "Bizi Değerlendirin" 5-Star Rating CTA Widget */}
