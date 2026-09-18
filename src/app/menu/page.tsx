@@ -53,12 +53,11 @@ export default function MenuPage() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const categoriesWithItems = useMemo(() => {
-    const relevantCategories =
-      activeCategory === 'all'
-        ? MENU_CATEGORIES.filter((c) => c.id !== 'all')
-        : MENU_CATEGORIES.filter((c) => c.id === activeCategory);
+  const isManualClickRef = useRef(false);
+  const categoryPillsRef = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
+  const categoriesWithItems = useMemo(() => {
+    const relevantCategories = MENU_CATEGORIES.filter((c) => c.id !== 'all');
     const query = searchQuery.trim().toLowerCase();
 
     return relevantCategories
@@ -78,34 +77,74 @@ export default function MenuPage() {
         };
       })
       .filter((cat) => cat.items.length > 0);
-  }, [activeCategory, searchQuery]);
+  }, [searchQuery]);
 
   const totalFilteredCount = useMemo(() => {
     return categoriesWithItems.reduce((acc, cat) => acc + cat.items.length, 0);
   }, [categoriesWithItems]);
 
-  const handleCategoryClick = (catId: string, e?: React.MouseEvent<HTMLButtonElement>) => {
-    setSearchQuery('');
-    setIsSearchOpen(false);
-    setActiveCategory(catId);
+  // Scroll Spy: Update active category pill as user scrolls through sections
+  useEffect(() => {
+    const handleScrollSpy = () => {
+      if (isManualClickRef.current) return;
 
-    if (e?.currentTarget) {
-      e.currentTarget.scrollIntoView({
+      if (window.scrollY < 220) {
+        setActiveCategory('all');
+        return;
+      }
+
+      const categorySections = MENU_CATEGORIES.filter((c) => c.id !== 'all');
+      const offset = 180;
+
+      let currentActive = 'all';
+      for (let i = 0; i < categorySections.length; i++) {
+        const cat = categorySections[i];
+        const el = document.getElementById(cat.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= offset) {
+            currentActive = cat.id;
+          }
+        }
+      }
+
+      setActiveCategory(currentActive);
+    };
+
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollSpy);
+  }, []);
+
+  // Keep active category pill in view inside the horizontal bar
+  useEffect(() => {
+    const pill = categoryPillsRef.current[activeCategory];
+    if (pill) {
+      pill.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',
         inline: 'center',
       });
     }
+  }, [activeCategory]);
+
+  const handleCategoryClick = (catId: string) => {
+    setSearchQuery('');
+    setIsSearchOpen(false);
+    setActiveCategory(catId);
+    isManualClickRef.current = true;
 
     if (catId === 'all') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      const el = document.getElementById('category-bar');
+      const el = document.getElementById(catId);
       if (el) {
-        const topY = el.getBoundingClientRect().top + window.scrollY - 64;
-        window.scrollTo({ top: Math.max(0, topY), behavior: 'smooth' });
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
+
+    setTimeout(() => {
+      isManualClickRef.current = false;
+    }, 850);
   };
 
   return (
@@ -250,8 +289,11 @@ export default function MenuPage() {
             return (
               <button
                 key={cat.id}
-                onClick={(e) => handleCategoryClick(cat.id, e)}
-                className={`px-4 py-2 rounded-full text-xs font-sans whitespace-nowrap transition-all duration-150 ${
+                ref={(el) => {
+                  categoryPillsRef.current[cat.id] = el;
+                }}
+                onClick={() => handleCategoryClick(cat.id)}
+                className={`px-4 py-2 rounded-full text-xs font-sans whitespace-nowrap transition-colors duration-200 ${
                   isActive
                     ? 'bg-[#1D1D1F] dark:bg-white text-white dark:text-[#1D1D1F] font-medium shadow-sm'
                     : 'bg-white dark:bg-zinc-900 text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-white border border-black/[0.04] dark:border-white/[0.06]'
