@@ -156,102 +156,104 @@ export default function MenuPage() {
           </p>
         </div>
 
-        {/* Segmented Category Filter with Circular Expandable Search */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 scrollbar-none">
-          {/* Circular Expandable Search Button */}
-          <motion.div
-            ref={searchContainerRef}
-            layout
-            animate={{
-              width: isSearchOpen || searchQuery ? 270 : 38,
-            }}
-            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-            className={`h-[38px] shrink-0 flex items-center rounded-full bg-white dark:bg-zinc-900 border transition-all shadow-apple-sm overflow-hidden ${
-              isSearchOpen || searchQuery
-                ? 'border-black/20 dark:border-white/30 ring-2 ring-black/5 dark:ring-white/10'
-                : 'border-black/[0.08] dark:border-white/[0.1] hover:border-black/20 dark:hover:border-white/20'
-            }`}
-          >
-            {/* Circular Search Icon Button */}
-            <button
-              type="button"
-              onClick={() => {
-                if (!isSearchOpen && !searchQuery) {
-                  setIsSearchOpen(true);
-                  setTimeout(() => inputRef.current?.focus(), 50);
-                } else {
-                  inputRef.current?.focus();
-                }
+        {/* Segmented Category Filter with Circular Expandable Search (Sticky under Header) */}
+        <div className="sticky top-16 z-30 -mx-6 px-6 sm:-mx-10 sm:px-10 lg:-mx-16 lg:px-16 py-3 mb-8 bg-[#F5F5F7]/95 dark:bg-black/95 backdrop-blur-xl border-b border-black/[0.06] dark:border-white/[0.08] shadow-apple-sm transition-all">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+            {/* Circular Expandable Search Button */}
+            <motion.div
+              ref={searchContainerRef}
+              layout
+              animate={{
+                width: isSearchOpen || searchQuery ? 270 : 38,
               }}
-              aria-label="Menüde ara"
-              className="w-[38px] h-[38px] shrink-0 flex items-center justify-center text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-white transition-colors"
+              transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+              className={`h-[38px] shrink-0 flex items-center rounded-full bg-white dark:bg-zinc-900 border transition-all shadow-apple-sm overflow-hidden ${
+                isSearchOpen || searchQuery
+                  ? 'border-black/20 dark:border-white/30 ring-2 ring-black/5 dark:ring-white/10'
+                  : 'border-black/[0.08] dark:border-white/[0.1] hover:border-black/20 dark:hover:border-white/20'
+              }`}
             >
-              <Search className="w-4 h-4" />
-            </button>
-
-            {/* Expanding Input & Controls */}
-            {(isSearchOpen || searchQuery) && (
-              <motion.div
-                initial={{ opacity: 0, x: -6 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -6 }}
-                transition={{ duration: 0.15 }}
-                className="flex items-center flex-1 pr-2.5 min-w-0"
+              {/* Circular Search Icon Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  if (!isSearchOpen && !searchQuery) {
+                    setIsSearchOpen(true);
+                    setTimeout(() => inputRef.current?.focus(), 50);
+                  } else {
+                    inputRef.current?.focus();
+                  }
+                }}
+                aria-label="Menüde ara"
+                className="w-[38px] h-[38px] shrink-0 flex items-center justify-center text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-white transition-colors"
               >
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Escape') {
+                <Search className="w-4 h-4" />
+              </button>
+
+              {/* Expanding Input & Controls */}
+              {(isSearchOpen || searchQuery) && (
+                <motion.div
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -6 }}
+                  transition={{ duration: 0.15 }}
+                  className="flex items-center flex-1 pr-2.5 min-w-0"
+                >
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Escape') {
+                        setSearchQuery('');
+                        setIsSearchOpen(false);
+                        inputRef.current?.blur();
+                      }
+                    }}
+                    placeholder="Menüde ara..."
+                    className="w-full bg-transparent text-xs font-sans text-[#1D1D1F] dark:text-white placeholder:text-[#86868B] focus:outline-none py-1"
+                  />
+
+                  {searchQuery && (
+                    <span className="text-[10px] font-sans font-medium px-1.5 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-[#86868B] dark:text-zinc-300 shrink-0 mr-1.5">
+                      {totalFilteredCount}
+                    </span>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => {
                       setSearchQuery('');
                       setIsSearchOpen(false);
-                      inputRef.current?.blur();
-                    }
-                  }}
-                  placeholder="Menüde ara..."
-                  className="w-full bg-transparent text-xs font-sans text-[#1D1D1F] dark:text-white placeholder:text-[#86868B] focus:outline-none py-1"
-                />
+                    }}
+                    aria-label="Aramayı Kapat"
+                    className="p-1 rounded-full text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-black/5 dark:hover:bg-white/10 transition-colors shrink-0"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </motion.div>
+              )}
+            </motion.div>
 
-                {searchQuery && (
-                  <span className="text-[10px] font-sans font-medium px-1.5 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-[#86868B] dark:text-zinc-300 shrink-0 mr-1.5">
-                    {totalFilteredCount}
-                  </span>
-                )}
-
+            {/* Category Pills */}
+            {MENU_CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              return (
                 <button
-                  type="button"
-                  onClick={() => {
-                    setSearchQuery('');
-                    setIsSearchOpen(false);
-                  }}
-                  aria-label="Aramayı Kapat"
-                  className="p-1 rounded-full text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-black/5 dark:hover:bg-white/10 transition-colors shrink-0"
+                  key={cat.id}
+                  onClick={() => handleCategoryClick(cat.id)}
+                  className={`px-4 py-2 rounded-full text-xs font-sans whitespace-nowrap transition-all duration-150 shadow-apple-sm ${
+                    isActive
+                      ? 'bg-[#1D1D1F] dark:bg-white text-white dark:text-[#1D1D1F] font-medium'
+                      : 'bg-white dark:bg-zinc-900 text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-white border border-black/[0.04] dark:border-white/[0.06]'
+                  }`}
                 >
-                  <X className="w-3.5 h-3.5" />
+                  {cat.name}
                 </button>
-              </motion.div>
-            )}
-          </motion.div>
-
-          {/* Category Pills */}
-          {MENU_CATEGORIES.map((cat) => {
-            const isActive = activeCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => handleCategoryClick(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs font-sans whitespace-nowrap transition-all duration-150 shadow-apple-sm ${
-                  isActive
-                    ? 'bg-[#1D1D1F] dark:bg-white text-white dark:text-[#1D1D1F] font-medium'
-                    : 'bg-white dark:bg-zinc-900 text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-white border border-black/[0.04] dark:border-white/[0.06]'
-                }`}
-              >
-                {cat.name}
-              </button>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         {/* Menu Items Grouped by Category */}

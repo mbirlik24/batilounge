@@ -17,50 +17,50 @@ interface GalleryItem {
 const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 'hero-ambiance',
-    title: 'Ana Salon & İç Mekan',
-    category: 'Lounge',
+    title: 'Gündüz Cam Balkon & Oturma Alanı',
+    category: 'İç Mekan',
     src: '/images/hero.jpg',
     aspect: 'col-span-2 row-span-2 md:col-span-2 lg:col-span-8',
   },
   {
     id: 'game-lounge',
-    title: 'Oyun Salonu (Okey & Masa Oyunları)',
-    category: 'Oyun (Ücretsiz)',
+    title: 'Açılır-Kapanır Tavan Sistemi',
+    category: 'İç Mekan',
     src: '/images/vip.jpg',
     aspect: 'col-span-1 row-span-1 md:col-span-1 lg:col-span-4',
   },
   {
     id: 'terrace-view',
-    title: 'Açık Balkon & Teras Keyfi',
-    category: 'Açık Hava',
+    title: 'Dekoratif Ahşap Duvar & Merdiven',
+    category: 'İç Mimari',
     src: '/images/terrace.jpg',
     aspect: 'col-span-1 row-span-1 md:col-span-1 lg:col-span-4',
   },
   {
     id: 'mixology-bar',
-    title: 'Nargile & İçecekler',
-    category: 'Nargile & Cafe',
+    title: 'Bahçe Verandası & Açık Alan',
+    category: 'Açık Alan',
     src: '/images/mixology.jpg',
     aspect: 'col-span-1 row-span-1 md:col-span-1 lg:col-span-4',
   },
   {
-    id: 'culinary-steak',
-    title: 'Cafe de Paris Bonfile',
-    category: 'Sıcak Mutfak',
+    id: 'evening-terrace',
+    title: 'Akşam Terası & Sıcak Işıklandırma',
+    category: 'İç Mekan',
     src: '/images/steak.jpg',
     aspect: 'col-span-1 row-span-1 md:col-span-1 lg:col-span-4',
   },
   {
-    id: 'artisan-dessert',
-    title: 'Sıcak Sufle & Dondurma',
-    category: 'Tatlı & Dondurma',
+    id: 'food-menu',
+    title: 'Yemek & Mutfak Menüsü',
+    category: 'Menü',
     src: '/images/dessert.jpg',
     aspect: 'col-span-1 row-span-1 md:col-span-1 lg:col-span-4',
   },
   {
-    id: 'lounge-extra',
-    title: 'Batı Lounge Zekeriyaköy',
-    category: 'Atmosfer',
+    id: 'drinks-menu',
+    title: 'İçecek & Kahve Menüsü',
+    category: 'Menü',
     src: '/images/lounge_extra.jpg',
     aspect: 'col-span-1 row-span-1 md:col-span-1 lg:col-span-4',
   },
@@ -100,7 +100,7 @@ export default function BentoGallery() {
             />
           </div>
           <p className="mt-2 md:mt-0 text-xs sm:text-sm font-sans font-light text-[#86868B] max-w-xs">
-            Açık hava balkonumuz, özel oyun salonumuz, lezzetli mutfağımız ve nargile keyfi.
+            Zekeriyaköy şubemizden gerçek iç mekan, teras ve menü kareleri.
           </p>
         </div>
 
