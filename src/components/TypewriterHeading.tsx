@@ -34,38 +34,37 @@ export default function TypewriterHeading({
   useEffect(() => {
     if (isInView) {
       setStarted(true);
-      return;
-    }
-    // Fallback for initial load if element is inside viewport
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        setStarted(true);
-      }
     }
   }, [isInView]);
 
   useEffect(() => {
-    if (!started) return;
+    if (!started || isDone) return;
+
+    // Faster completion with 2-char chunks on mobile to halve React re-render churn
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const step = isMobile ? 2 : 1;
+    const effectiveSpeed = isMobile ? Math.min(speed, 25) : speed;
 
     let timer: NodeJS.Timeout;
     const delayTimer = setTimeout(() => {
-      let current = 0;
+      let current = charIndex;
       timer = setInterval(() => {
-        current++;
-        setCharIndex(current);
+        current += step;
         if (current >= fullText.length) {
-          clearInterval(timer);
+          setCharIndex(fullText.length);
           setIsDone(true);
+          clearInterval(timer);
+        } else {
+          setCharIndex(current);
         }
-      }, speed);
+      }, effectiveSpeed);
     }, delay);
 
     return () => {
       clearTimeout(delayTimer);
       if (timer) clearInterval(timer);
     };
-  }, [started, fullText, speed, delay]);
+  }, [started, isDone, fullText.length, speed, delay]);
 
   const Tag = as;
   const currentText = fullText.slice(0, charIndex);

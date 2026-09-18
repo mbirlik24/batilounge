@@ -1,15 +1,42 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Script from 'next/script';
 import { Instagram, ArrowUpRight } from 'lucide-react';
 import TypewriterHeading from '@/components/TypewriterHeading';
 
 export default function InstagramFeed() {
+  const [loadScript, setLoadScript] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setLoadScript(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '250px' }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="instagram" className="snap-section py-8 sm:py-16 bg-white dark:bg-[#09090B] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
-      {/* Elfsight Platform Script */}
-      <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+    <section
+      ref={sectionRef}
+      id="instagram"
+      className="snap-section py-8 sm:py-16 bg-white dark:bg-[#09090B] border-t border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden"
+    >
+      {/* Elfsight Platform Script - loaded only when approaching viewport */}
+      {loadScript && (
+        <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16">
         {/* Section Header */}

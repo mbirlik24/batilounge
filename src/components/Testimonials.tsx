@@ -85,6 +85,8 @@ function ReviewAvatar({
         src={src}
         alt=""
         referrerPolicy="no-referrer"
+        loading="lazy"
+        decoding="async"
         onError={() => setImgError(true)}
         className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-zinc-200 dark:border-zinc-700 shadow-sm shrink-0"
       />
@@ -301,7 +303,7 @@ export default function Testimonials() {
   const stripReviews = useMemo(() => {
     if (filteredReviews.length === 0) return [];
     let list = [...filteredReviews];
-    while (list.length < 24) {
+    while (list.length < 12) {
       list = [...list, ...filteredReviews];
     }
     return list;
@@ -317,6 +319,8 @@ export default function Testimonials() {
   const strip1Ref = useRef<HTMLDivElement>(null);
   const strip2Ref = useRef<HTMLDivElement>(null);
   const cardSampleRef = useRef<HTMLDivElement>(null);
+  const cardWidthRef = useRef<number>(320);
+  const wakeUpRef = useRef<(() => void) | null>(null);
 
   const targetOffset = useRef(0);
   const currentOffset = useRef(0);
@@ -328,25 +332,22 @@ export default function Testimonials() {
   const dragDistance = useRef(0);
   const [isGrabbing, setIsGrabbing] = useState(false);
 
+  // Measure card width once on mount & resize, avoiding layout thrashing during animation
   useEffect(() => {
-    let animId: number;
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      const currentScrollY = window.scrollY;
-      const deltaY = currentScrollY - lastScrollY;
-      lastScrollY = currentScrollY;
-
-      // Slow and gentle scroll movement ("daha yavaş olsun")
-      if (inView && !isDragging.current) {
-        targetOffset.current += deltaY * 0.28;
+    const updateCardWidth = () => {
+      if (cardSampleRef.current) {
+        cardWidthRef.current = cardSampleRef.current.offsetWidth + 16;
       }
     };
+    updateCardWidth();
+    window.addEventListener('resize', updateCardWidth, { passive: true });
+    return () => window.removeEventListener('resize', updateCardWidth);
+  }, []);
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+  useEffect(() => {
+    let animId: number | null = null;
+    let isRunning = false;
+    let lastScrollY = window.scrollY;
 
     const updateLoop = () => {
       const diff = targetOffset.current - currentOffset.current;
@@ -354,8 +355,7 @@ export default function Testimonials() {
         currentOffset.current += diff * 0.08;
       }
 
-      // Calculate cycle width dynamically from actual rendered card size
-      const cardWidth = cardSampleRef.current ? cardSampleRef.current.offsetWidth + 16 : 320;
+      const cardWidth = cardWidthRef.current || 320;
       const baseCount = filteredReviews.length || 5;
       const multiplier = Math.max(1, Math.ceil(4 / baseCount));
       const cycleWidth = baseCount * multiplier * cardWidth;
@@ -371,14 +371,48 @@ export default function Testimonials() {
         strip2Ref.current.style.transform = `translate3d(${x2}px, 0, 0)`;
       }
 
+      // If motion has settled and not dragging, sleep the animation loop
+      if (Math.abs(diff) <= 0.02 && !isDragging.current) {
+        isRunning = false;
+        animId = null;
+        return;
+      }
+
       animId = requestAnimationFrame(updateLoop);
     };
 
-    animId = requestAnimationFrame(updateLoop);
+    const wakeUp = () => {
+      if (!isRunning) {
+        isRunning = true;
+        animId = requestAnimationFrame(updateLoop);
+      }
+    };
+
+    wakeUpRef.current = wakeUp;
+
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      const currentScrollY = window.scrollY;
+      const deltaY = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+
+      // Slow and gentle scroll movement
+      if (inView && !isDragging.current && deltaY !== 0) {
+        targetOffset.current += deltaY * 0.28;
+        wakeUp();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial draw
+    wakeUp();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      cancelAnimationFrame(animId);
+      if (animId !== null) cancelAnimationFrame(animId);
+      isRunning = false;
     };
   }, [filteredReviews.length]);
 
@@ -387,6 +421,7 @@ export default function Testimonials() {
     setIsGrabbing(true);
     lastClientX.current = e.clientX;
     dragDistance.current = 0;
+    wakeUpRef.current?.();
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -396,6 +431,7 @@ export default function Testimonials() {
     dragDistance.current += Math.abs(deltaX);
     targetOffset.current -= deltaX * 1.15;
     currentOffset.current -= deltaX * 1.15;
+    wakeUpRef.current?.();
   };
 
   const handleMouseUp = () => {
@@ -410,6 +446,7 @@ export default function Testimonials() {
     lastClientX.current = e.touches[0].clientX;
     isHorizontalSwipe.current = null;
     dragDistance.current = 0;
+    wakeUpRef.current?.();
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -431,6 +468,7 @@ export default function Testimonials() {
       dragDistance.current += Math.abs(deltaX);
       targetOffset.current -= deltaX * 1.25;
       currentOffset.current -= deltaX * 1.25;
+      wakeUpRef.current?.();
     }
   };
 
@@ -553,8 +591,10 @@ export default function Testimonials() {
                   >
                     <img
                       src={photo.url}
-                      alt="Google Business Place Photo"
+                      alt="Batı Lounge Google Photo"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

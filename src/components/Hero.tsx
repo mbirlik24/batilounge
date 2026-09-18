@@ -12,6 +12,7 @@ interface HeroProps {
 
 export default function Hero({ onOpenReservation }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -21,7 +22,7 @@ export default function Hero({ onOpenReservation }: HeroProps) {
       
       const forcePlay = () => {
         if (video.paused) {
-          video.play().catch((e) => console.log('Autoplay play error:', e));
+          video.play().catch(() => {});
         }
       };
 
@@ -29,7 +30,30 @@ export default function Hero({ onOpenReservation }: HeroProps) {
       video.addEventListener('canplaythrough', forcePlay);
       video.addEventListener('loadedmetadata', forcePlay);
 
+      // Pause video when scrolled out of view to save mobile CPU/GPU & battery
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (video.paused) {
+                video.play().catch(() => {});
+              }
+            } else {
+              if (!video.paused) {
+                video.pause();
+              }
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
+
+      if (sectionRef.current) {
+        observer.observe(sectionRef.current);
+      }
+
       return () => {
+        observer.disconnect();
         video.removeEventListener('canplaythrough', forcePlay);
         video.removeEventListener('loadedmetadata', forcePlay);
       };
@@ -46,7 +70,7 @@ export default function Hero({ onOpenReservation }: HeroProps) {
   };
 
   return (
-    <section className="snap-section relative h-[100dvh] min-h-[100dvh] w-full flex flex-col justify-between pt-32 sm:pt-44 lg:pt-48 pb-6 sm:pb-10 overflow-hidden bg-[#0A0A0C]">
+    <section ref={sectionRef} className="snap-section relative h-[100dvh] min-h-[100dvh] w-full flex flex-col justify-between pt-32 sm:pt-44 lg:pt-48 pb-6 sm:pb-10 overflow-hidden bg-[#0A0A0C]">
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0 bg-[#0A0A0C] overflow-hidden">
         <video
@@ -57,7 +81,7 @@ export default function Hero({ onOpenReservation }: HeroProps) {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         />
 
