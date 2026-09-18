@@ -25,7 +25,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black text-[#1D1D1F] dark:text-[#F5F5F7] transition-colors duration-200">
+    <main className="min-h-screen bg-white dark:bg-black text-[#1D1D1F] dark:text-[#F5F5F7]">
       {/* Fixed / Floating Navbar */}
       <Navbar onOpenReservation={handleOpenReservation} />
 

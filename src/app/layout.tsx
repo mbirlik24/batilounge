@@ -87,8 +87,23 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@300;400;500;600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
           rel="stylesheet"
         />
-        {/* Preload Critical Hero Assets for Instant Clean Page Load */}
-        <link rel="preload" as="image" href="/images/hero.jpg" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('bati_theme');
+                  if (saved === 'light') {
+                    document.documentElement.classList.remove('dark');
+                  } else {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+        {/* Preload Critical Logo Assets */}
         <link rel="preload" as="image" href="/images/logo-white.png" />
         <link rel="preload" as="image" href="/images/logo-dark.png" />
         <JsonLd />

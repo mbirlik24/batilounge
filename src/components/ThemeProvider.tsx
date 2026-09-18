@@ -11,28 +11,24 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'light',
+  theme: 'dark',
   setTheme: () => {},
-  resolvedTheme: 'light',
+  resolvedTheme: 'dark',
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('light');
+  const [theme, setThemeState] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem('bati_theme') as Theme | null;
-    if (saved === 'dark' || saved === 'light') {
-      setThemeState(saved);
-      if (saved === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    } else {
+    if (saved === 'light') {
       setThemeState('light');
       document.documentElement.classList.remove('dark');
+    } else {
+      setThemeState('dark');
+      document.documentElement.classList.add('dark');
     }
   }, []);
 

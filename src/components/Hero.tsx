@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 
@@ -13,6 +13,7 @@ interface HeroProps {
 export default function Hero({ onOpenReservation }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -76,13 +77,15 @@ export default function Hero({ onOpenReservation }: HeroProps) {
         <video
           ref={videoRef}
           src="/videos/hero.mp4"
-          poster="/images/hero.jpg"
           autoPlay
           loop
           muted
           playsInline
           preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          onPlaying={() => setIsVideoReady(true)}
+          className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-700 ease-out ${
+            isVideoReady ? 'opacity-100' : 'opacity-0'
+          }`}
         />
 
         {/* Slightly Darkened Overlays for Optimum Video Clarity & Text Legibility */}
