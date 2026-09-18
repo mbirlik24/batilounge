@@ -84,21 +84,27 @@ export default function MenuPage() {
     return categoriesWithItems.reduce((acc, cat) => acc + cat.items.length, 0);
   }, [categoriesWithItems]);
 
-  const handleCategoryClick = (catId: string) => {
+  const handleCategoryClick = (catId: string, e?: React.MouseEvent<HTMLButtonElement>) => {
     setSearchQuery('');
     setIsSearchOpen(false);
+    setActiveCategory(catId);
 
-    if (activeCategory === 'all' && catId !== 'all') {
-      const el = document.getElementById(catId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
+    if (e?.currentTarget) {
+      e.currentTarget.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center',
+      });
     }
 
-    setActiveCategory(catId);
     if (catId === 'all') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const el = document.getElementById('category-bar');
+      if (el) {
+        const topY = el.getBoundingClientRect().top + window.scrollY - 64;
+        window.scrollTo({ top: Math.max(0, topY), behavior: 'smooth' });
+      }
     }
   };
 
@@ -106,7 +112,7 @@ export default function MenuPage() {
     <div className="min-h-screen bg-[#F5F5F7] dark:bg-black text-[#1D1D1F] dark:text-[#F5F5F7]">
       {/* Top Header */}
       <header className="sticky top-0 z-40 apple-glass-nav border-b border-black/[0.08] dark:border-white/[0.12] shadow-apple-sm">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 h-16 flex items-center justify-between">
           <Link
             href="/"
             className="flex items-center gap-2 text-xs font-sans font-medium text-[#1D1D1F]/70 dark:text-[#F5F5F7]/70 hover:text-[#1D1D1F] dark:hover:text-white transition-colors"
@@ -141,10 +147,9 @@ export default function MenuPage() {
         </div>
       </header>
 
-      {/* Main Menu Container */}
-      <main className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-10 sm:py-14">
-        {/* Title */}
-        <div className="mb-8 pb-6 border-b border-black/[0.06] dark:border-white/[0.08]">
+      {/* Hero / Page Title Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-8 sm:pt-12 pb-4">
+        <div className="pb-6 border-b border-black/[0.06] dark:border-white/[0.08]">
           <TypewriterHeading
             text="Batı Lounge Gurme Menü"
             as="h1"
@@ -155,107 +160,112 @@ export default function MenuPage() {
             Zekeriyaköy • 7/24 Kesintisiz Mutfak • Fotoğraflı Güncel Menü & Fiyat Listesi
           </p>
         </div>
+      </div>
 
-        {/* Segmented Category Filter with Circular Expandable Search (Sticky under Header) */}
-        <div className="sticky top-16 z-30 -mx-6 px-6 sm:-mx-10 sm:px-10 lg:-mx-16 lg:px-16 py-3 mb-8 bg-[#F5F5F7]/95 dark:bg-black/95 backdrop-blur-xl border-b border-black/[0.06] dark:border-white/[0.08] shadow-apple-sm transition-all">
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-            {/* Circular Expandable Search Button */}
-            <motion.div
-              ref={searchContainerRef}
-              layout
-              animate={{
-                width: isSearchOpen || searchQuery ? 270 : 38,
+      {/* Sticky Full-Width Category Filter Bar with Edge-to-Edge Fluid Flow */}
+      <div
+        id="category-bar"
+        className="sticky top-16 z-30 w-full bg-[#F5F5F7]/95 dark:bg-black/95 backdrop-blur-xl border-b border-black/[0.06] dark:border-white/[0.08] shadow-apple-sm"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-2.5 flex items-center gap-2 overflow-x-auto scrollbar-none">
+          {/* Circular Expandable Search Button */}
+          <motion.div
+            ref={searchContainerRef}
+            animate={{
+              width: isSearchOpen || searchQuery ? 270 : 38,
+            }}
+            transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+            className={`h-[38px] shrink-0 flex items-center rounded-full bg-white dark:bg-zinc-900 border overflow-hidden ${
+              isSearchOpen || searchQuery
+                ? 'border-zinc-900/30 dark:border-white/40 shadow-sm'
+                : 'border-black/[0.08] dark:border-white/[0.1] hover:border-black/20 dark:hover:border-white/20'
+            }`}
+          >
+            {/* Circular Search Icon Button */}
+            <button
+              type="button"
+              onClick={() => {
+                if (!isSearchOpen && !searchQuery) {
+                  setIsSearchOpen(true);
+                  setTimeout(() => inputRef.current?.focus(), 50);
+                } else {
+                  inputRef.current?.focus();
+                }
               }}
-              transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-              className={`h-[38px] shrink-0 flex items-center rounded-full bg-white dark:bg-zinc-900 border transition-all shadow-apple-sm overflow-hidden ${
-                isSearchOpen || searchQuery
-                  ? 'border-black/20 dark:border-white/30 ring-2 ring-black/5 dark:ring-white/10'
-                  : 'border-black/[0.08] dark:border-white/[0.1] hover:border-black/20 dark:hover:border-white/20'
-              }`}
+              aria-label="Menüde ara"
+              className="w-[38px] h-[38px] shrink-0 flex items-center justify-center text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-white transition-colors"
             >
-              {/* Circular Search Icon Button */}
-              <button
-                type="button"
-                onClick={() => {
-                  if (!isSearchOpen && !searchQuery) {
-                    setIsSearchOpen(true);
-                    setTimeout(() => inputRef.current?.focus(), 50);
-                  } else {
-                    inputRef.current?.focus();
-                  }
-                }}
-                aria-label="Menüde ara"
-                className="w-[38px] h-[38px] shrink-0 flex items-center justify-center text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-white transition-colors"
+              <Search className="w-4 h-4" />
+            </button>
+
+            {/* Expanding Input & Controls */}
+            {(isSearchOpen || searchQuery) && (
+              <motion.div
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -6 }}
+                transition={{ duration: 0.15 }}
+                className="flex items-center flex-1 pr-2.5 min-w-0"
               >
-                <Search className="w-4 h-4" />
-              </button>
-
-              {/* Expanding Input & Controls */}
-              {(isSearchOpen || searchQuery) && (
-                <motion.div
-                  initial={{ opacity: 0, x: -6 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -6 }}
-                  transition={{ duration: 0.15 }}
-                  className="flex items-center flex-1 pr-2.5 min-w-0"
-                >
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Escape') {
-                        setSearchQuery('');
-                        setIsSearchOpen(false);
-                        inputRef.current?.blur();
-                      }
-                    }}
-                    placeholder="Menüde ara..."
-                    className="w-full bg-transparent text-xs font-sans text-[#1D1D1F] dark:text-white placeholder:text-[#86868B] focus:outline-none py-1"
-                  />
-
-                  {searchQuery && (
-                    <span className="text-[10px] font-sans font-medium px-1.5 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-[#86868B] dark:text-zinc-300 shrink-0 mr-1.5">
-                      {totalFilteredCount}
-                    </span>
-                  )}
-
-                  <button
-                    type="button"
-                    onClick={() => {
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') {
                       setSearchQuery('');
                       setIsSearchOpen(false);
-                    }}
-                    aria-label="Aramayı Kapat"
-                    className="p-1 rounded-full text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-black/5 dark:hover:bg-white/10 transition-colors shrink-0"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                  </button>
-                </motion.div>
-              )}
-            </motion.div>
+                      inputRef.current?.blur();
+                    }
+                  }}
+                  placeholder="Menüde ara..."
+                  className="w-full bg-transparent text-xs font-sans text-[#1D1D1F] dark:text-white placeholder:text-[#86868B] focus:outline-none py-1"
+                />
 
-            {/* Category Pills */}
-            {MENU_CATEGORIES.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              return (
+                {searchQuery && (
+                  <span className="text-[10px] font-sans font-medium px-1.5 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-[#86868B] dark:text-zinc-300 shrink-0 mr-1.5">
+                    {totalFilteredCount}
+                  </span>
+                )}
+
                 <button
-                  key={cat.id}
-                  onClick={() => handleCategoryClick(cat.id)}
-                  className={`px-4 py-2 rounded-full text-xs font-sans whitespace-nowrap transition-all duration-150 shadow-apple-sm ${
-                    isActive
-                      ? 'bg-[#1D1D1F] dark:bg-white text-white dark:text-[#1D1D1F] font-medium'
-                      : 'bg-white dark:bg-zinc-900 text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-white border border-black/[0.04] dark:border-white/[0.06]'
-                  }`}
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setIsSearchOpen(false);
+                  }}
+                  aria-label="Aramayı Kapat"
+                  className="p-1 rounded-full text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-black/5 dark:hover:bg-white/10 transition-colors shrink-0"
                 >
-                  {cat.name}
+                  <X className="w-3.5 h-3.5" />
                 </button>
-              );
-            })}
-          </div>
-        </div>
+              </motion.div>
+            )}
+          </motion.div>
 
+          {/* Category Pills */}
+          {MENU_CATEGORIES.map((cat) => {
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={(e) => handleCategoryClick(cat.id, e)}
+                className={`px-4 py-2 rounded-full text-xs font-sans whitespace-nowrap transition-all duration-150 ${
+                  isActive
+                    ? 'bg-[#1D1D1F] dark:bg-white text-white dark:text-[#1D1D1F] font-medium shadow-sm'
+                    : 'bg-white dark:bg-zinc-900 text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-white border border-black/[0.04] dark:border-white/[0.06]'
+                }`}
+              >
+                {cat.name}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Main Menu Container */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-8 sm:py-12">
         {/* Menu Items Grouped by Category */}
         <div className="space-y-12 sm:space-y-16">
           {categoriesWithItems.length > 0 ? (
